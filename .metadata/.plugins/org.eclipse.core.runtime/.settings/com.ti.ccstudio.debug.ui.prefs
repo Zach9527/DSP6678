@@ -1,0 +1,14 @@
+MODULES_CODE_OFFSET=
+MODULES_DATA_OFFSET=
+MODULES_MRU_PATH=E\:/project_source\\ORC2242\\orc2242\\AppPrj\\Debug\\AppPrj.out
+MODULES_MRU_PATH.1=E\:\\project_source\\ORC2242\\orc2242\\AppPrj\\Debug\\AppPrj.out
+MODULES_MRU_PATH.2=\#SYM_\#(,) path\=E\:\\project_source\\ORC2242\\orc2242\\dspbootloader\\Debug\\dspbootloader.out
+MODULES_MRU_PATH.3=E\:\\project_source\\ORC2242\\orc2242\\BurnBootToFlash\\Debug\\BurnBootToFlash.out
+MODULES_MRU_PATH.4=E\:\\project_source\\ORC2242\\orc2242\\dspbootloader\\Debug\\dspbootloader.out
+MODULES_MRU_PATH.5=\#ADD_SYM\#(0,0) path\=E\:\\project_source\\ORC2242\\orc2242\\dspbootloader\\Debug\\dspbootloader.out
+MODULES_MRU_PATH.6=\#SYM_\#(,) path\=E\:\\project_source\\ORC2242\\orc2242\\BurnBootToFlash\\Debug\\BurnBootToFlash.out
+MODULES_MRU_PATH.7=\#SYM_\#(,) path\=E\:\\project_source\\ORC2242\\orc2242\\bootloader\\Debug\\bootloader.out
+MODULES_MRU_PATH.8=E\:\\project_source\\ORC2242\\orc2242\\bootloader\\Debug\\bootloader.out
+MODULES_MRU_PATH.9=E\:\\project_source\\ORC2242\\orc2242\\BurnCoreToFlash\\Debug\\BurnCoreToFlash.out
+eclipse.preferences.version=1
+useAnnotationsPrefPage=true

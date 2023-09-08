@@ -1,0 +1,472 @@
+******************************************************************************
+               TMS320C6x Linker PC v7.4.4                      
+******************************************************************************
+>> Linked Fri Feb 10 11:02:06 2023
+
+OUTPUT FILE NAME:   <BurnBootToFlash.out>
+ENTRY POINT SYMBOL: "_c_int00"  address: 00853d80
+
+
+MEMORY CONFIGURATION
+
+         name            origin    length      used     unused   attr    fill
+----------------------  --------  ---------  --------  --------  ----  --------
+  L2SRAM                00800000   00100000  00054e3b  000ab1c5  RW X
+  L1PSRAM               00e00000   00007fff  00000000  00007fff  RW X
+  L1DSRAM               00f00000   00007fff  00000000  00007fff  RW X
+  MSMCSRAM              0c000000   00200000  00000000  00200000  RW X
+  DDR3                  80000000   10000000  00000000  10000000  RW X
+
+
+SEGMENT ALLOCATION MAP
+
+run origin  load origin   length   init length attrs members
+----------  ----------- ---------- ----------- ----- -------
+00800000    00800000    0004b000   00000000    rw-
+  00800000    00800000    00041000   00000000    rw- .sysmem
+  00841000    00841000    0000a000   00000000    rw- .stack
+0084b000    0084b000    00009817   00009817    r-x
+  0084b000    0084b000    00009460   00009460    r-x .text
+  00854460    00854460    000003b7   000003b7    r-- .const
+00854818    00854818    00000590   00000328    rw-
+  00854818    00854818    00000328   00000328    rw- .fardata
+  00854b40    00854b40    00000148   00000000    rw- .far
+  00854c88    00854c88    00000120   00000000    rw- .cio
+00854da8    00854da8    00000094   00000094    r--
+  00854da8    00854da8    00000094   00000094    r-- .cinit
+
+
+SECTION ALLOCATION MAP
+
+ output                                  attributes/
+section   page    origin      length       input sections
+--------  ----  ----------  ----------   ----------------
+.sysmem    0    00800000    00041000     UNINITIALIZED
+                  00800000    00000008     rts6600_elf.lib : memory.obj (.sysmem)
+                  00800008    00040ff8     --HOLE--
+
+.stack     0    00841000    0000a000     UNINITIALIZED
+                  00841000    00000008     rts6600_elf.lib : boot.obj (.stack)
+                  00841008    00009ff8     --HOLE--
+
+.text      0    0084b000    00009460     
+                  0084b000    00001340     DDR3_800M.obj (.text)
+                  0084c340    00000660     flash.obj (.text)
+                  0084c9a0    000005c0     rts6600_elf.lib : divd.obj (.text:__c6xabi_divd)
+                  0084cf60    000005c0                     : _printfi.obj (.text:_getarg_diouxp)
+                  0084d520    00000460                     : _printfi.obj (.text:_printfi)
+                  0084d980    00000460                     : _printfi.obj (.text:_setfield)
+                  0084dde0    000003e0     PLL2.obj (.text)
+                  0084e1c0    000003a0     rts6600_elf.lib : fputs.obj (.text:fputs)
+                  0084e560    00000380     evmc6678.obj (.text)
+                  0084e8e0    00000320     rts6600_elf.lib : _printfi.obj (.text:_pproc_fge)
+                  0084ec00    000002e0                     : _printfi.obj (.text:_pproc_fwp)
+                  0084eee0    000002c0                     : fread.obj (.text:fread)
+                  0084f1a0    000002a0                     : _printfi.obj (.text:fcvt)
+                  0084f440    00000280                     : _printfi.obj (.text:ecvt)
+                  0084f6c0    00000280                     : memory.obj (.text:free)
+                  0084f940    00000260     emif.obj (.text)
+                  0084fba0    00000240     rts6600_elf.lib : imath64.obj (.text:__c6xabi_divull)
+                  0084fde0    00000240                     : _printfi.obj (.text:_pconv_e)
+                  00850020    00000240                     : _printfi.obj (.text:_pproc_diouxp)
+                  00850260    00000220                     : _printfi.obj (.text:_pproc_str)
+                  00850480    00000220                     : fputc.obj (.text:fputc)
+                  008506a0    00000200                     : _printfi.obj (.text:_pconv_g)
+                  008508a0    00000200                     : setvbuf.obj (.text:setvbuf)
+                  00850aa0    000001c0                     : _printfi.obj (.text:_mcpy)
+                  00850c60    000001c0                     : fopen.obj (.text:_openfile)
+                  00850e20    000001a0                     : trgdrv.obj (.text:HOSTrename)
+                  00850fc0    000001a0                     : imath40.obj (.text:__c6xabi_divul)
+                  00851160    00000180                     : copy_decompress_rle.obj (.text:__TI_decompress_rle_core)
+                  008512e0    00000180                     : memory.obj (.text:malloc)
+                  00851460    00000180                     : lowlev.obj (.text:open)
+                  008515e0    00000160     progress_bar.obj (.text)
+                  00851740    00000140     rts6600_elf.lib : _printfi.obj (.text:_pproc_fflags)
+                  00851880    00000140                     : lowlev.obj (.text:getdevice)
+                  008519c0    00000120                     : _bufread.obj (.text:_buff_read)
+                  00851ae0    00000120                     : fclose.obj (.text:_closefile)
+                  00851c00    00000120                     : _printfi.obj (.text:_ltostr)
+                  00851d20    00000120                     : fopen.obj (.text:_search_fp)
+                  00851e40    00000120                     : fseek.obj (.text:fseek)
+                  00851f60    00000120                     : ftell.obj (.text:ftell)
+                  00852080    00000100                     : trgdrv.obj (.text:HOSTlseek)
+                  00852180    00000100                     : autoinit.obj (.text:_auto_init_elf)
+                  00852280    00000100                     : _io_perm.obj (.text:_wrt_ok)
+                  00852380    00000100                     : cpy_tbl.obj (.text:copy_in)
+                  00852480    000000e0                     : trgdrv.obj (.text:HOSTopen)
+                  00852560    000000e0                     : divi.obj (.text:__divi)
+                  00852640    000000e0                     : _printfi.obj (.text:_div)
+                  00852720    000000e0                     : atoi.obj (.text:atoi)
+                  00852800    000000e0                     : lowlev.obj (.text:close)
+                  008528e0    000000e0                     : copy_zero_init.obj (.text:decompress:ZI:__TI_zero_init)
+                  008529c0    000000e0                     : fflush.obj (.text:fflush)
+                  00852aa0    000000e0                     : ltoa.obj (.text:ltoa)
+                  00852b80    000000e0     main.obj (.text)
+                  00852c60    000000e0     rts6600_elf.lib : memset.obj (.text:memset)
+                  00852d40    000000e0                     : printf.obj (.text:printf)
+                  00852e20    000000c0                     : trgdrv.obj (.text:HOSTread)
+                  00852ee0    000000c0                     : trgdrv.obj (.text:HOSTunlink)
+                  00852fa0    000000c0                     : trgdrv.obj (.text:HOSTwrite)
+                  00853060    000000c0     PLL.obj (.text)
+                  00853120    000000c0     rts6600_elf.lib : divu.obj (.text:__divu)
+                  008531e0    000000c0                     : fflush.obj (.text:_doflush)
+                  008532a0    000000c0                     : _io_perm.obj (.text:_rd_ok)
+                  00853360    000000c0                     : exit.obj (.text:exit)
+                  00853420    000000c0                     : tls.obj (.text:tls:init:__TI_tls_init)
+                  008534e0    000000a0                     : trgdrv.obj (.text:HOSTclose)
+                  00853580    000000a0                     : fopen.obj (.text:_cleanup)
+                  00853620    000000a0                     : _printfi.obj (.text:_ecpy)
+                  008536c0    000000a0                     : _printfi.obj (.text:_fcpy)
+                  00853760    000000a0                     : memory.obj (.text:_minit)
+                  00853800    000000a0                     : _printfi.obj (.text:_pconv_f)
+                  008538a0    000000a0                     : lowlev.obj (.text:finddevice)
+                  00853940    000000a0                     : lowlev.obj (.text:lseek)
+                  008539e0    000000a0                     : memcpy64.obj (.text:memcpy)
+                  00853a80    000000a0                     : memory.obj (.text:minsert)
+                  00853b20    000000a0                     : memory.obj (.text:mremove)
+                  00853bc0    000000a0                     : lowlev.obj (.text:read)
+                  00853c60    000000a0                     : lowlev.obj (.text:write)
+                  00853d00    00000080                     : llshift.obj (.text:__c6xabi_llshl)
+                  00853d80    00000080                     : boot.obj (.text:_c_int00)
+                  00853e00    00000080                     : trgmsg.obj (.text:readmsg)
+                  00853e80    00000080                     : lowlev.obj (.text:unlink)
+                  00853f00    00000060                     : cpp_init.obj (.text:__TI_cpp_init)
+                  00853f60    00000060                     : frcmpyd_div.obj (.text:__c6xabi_frcmpyd_div)
+                  00853fc0    00000060                     : llshift.obj (.text:__c6xabi_llshru)
+                  00854020    00000060                     : imath64.obj (.text:_subcull)
+                  00854080    00000060                     : fclose.obj (.text:fclose)
+                  008540e0    00000060                     : fopen.obj (.text:fopen)
+                  00854140    00000060                     : memccpy.obj (.text:memccpy)
+                  008541a0    00000060                     : lowlev.obj (.text:tabinit)
+                  00854200    00000060                     : trgmsg.obj (.text:writemsg)
+                  00854260    00000040                     : isinf.obj (.text:__c6xabi_isinf)
+                  008542a0    00000040                     : _printfi.obj (.text:__c6xabi_isnan)
+                  008542e0    00000040                     : args_main.obj (.text:_args_main)
+                  00854320    00000040     csl_pllcGetBaseAddress.obj (.text)
+                  00854360    00000020     rts6600_elf.lib : errno.obj (.text:__c6xabi_errno_addr)
+                  00854380    00000020                     : negll.obj (.text:__c6xabi_negll)
+                  008543a0    00000020                     : _lock.obj (.text:_nop)
+                  008543c0    00000020                     : printf.obj (.text:_outc)
+                  008543e0    00000020                     : printf.obj (.text:_outs)
+                  00854400    00000020                     : exit.obj (.text:abort)
+                  00854420    00000020                     : copy_decompress_none.obj (.text:decompress:none:__TI_decompress_none)
+                  00854440    00000020                     : copy_decompress_rle.obj (.text:decompress:rle24:__TI_decompress_rle24)
+
+.const     0    00854460    000003b7     
+                  00854460    00000124     flash.obj (.const:.string)
+                  00854584    00000004     --HOLE-- [fill = 0]
+                  00854588    00000101     rts6600_elf.lib : ctype.obj (.const:.string:_ctypes_)
+                  00854689    00000003     --HOLE-- [fill = 0]
+                  0085468c    0000008c     main.obj (.const:.string)
+                  00854718    00000084     DDR3_800M.obj (.const:.string)
+                  0085479c    00000058     progress_bar.obj (.const:.string)
+                  008547f4    00000023     rts6600_elf.lib : _printfi.obj (.const:.string)
+
+.fardata   0    00854818    00000328     
+                  00854818    000001e0     rts6600_elf.lib : defs.obj (.fardata:_ftable)
+                  008549f8    000000a0                     : lowlev.obj (.fardata:_stream)
+                  00854a98    00000078                     : lowlev.obj (.fardata:_device)
+                  00854b10    0000000c                     : exit.obj (.fardata)
+                  00854b1c    0000000c                     : memory.obj (.fardata)
+                  00854b28    00000008                     : _lock.obj (.fardata)
+                  00854b30    00000004                     : defs.obj (.fardata)
+                  00854b34    00000004                     : errno.obj (.fardata)
+                  00854b38    00000004                     : fopen.obj (.fardata)
+                  00854b3c    00000004                     : lowlev.obj (.fardata)
+
+.far       0    00854b40    00000148     UNINITIALIZED
+                  00854b40    00000140     rts6600_elf.lib : defs.obj (.far)
+                  00854c80    00000008                     : trgdrv.obj (.far)
+
+.cio       0    00854c88    00000120     UNINITIALIZED
+                  00854c88    00000120     rts6600_elf.lib : trgmsg.obj (.cio)
+
+.cinit     0    00854da8    00000094     
+                  00854da8    0000006e     (.cinit..fardata.load) [load image, compression = rle]
+                  00854e16    00000002     --HOLE-- [fill = 0]
+                  00854e18    0000000c     (__TI_handler_table)
+                  00854e24    00000008     (.cinit..far.load) [load image, compression = zero_init]
+                  00854e2c    00000010     (__TI_cinit_table)
+
+
+LINKER GENERATED COPY TABLES
+
+__TI_cinit_table @ 00854e2c records: 2, size/record: 8, table size: 16
+	.fardata: load addr=00854da8, load size=0000006e bytes, run addr=00854818, run size=00000328 bytes, compression=rle
+	.far: load addr=00854e24, load size=00000008 bytes, run addr=00854b40, run size=00000148 bytes, compression=zero_init
+
+
+LINKER GENERATED HANDLER TABLE
+
+__TI_handler_table @ 00854e18 records: 3, size/record: 4, table size: 12
+	index: 0, handler: __TI_zero_init
+	index: 1, handler: __TI_decompress_rle24
+	index: 2, handler: __TI_decompress_none
+
+
+GLOBAL SYMBOLS: SORTED ALPHABETICALLY BY Name 
+
+address    name
+--------   ----
+00854400   C$$EXIT
+00854258   C$$IO$$
+00854320   CSL_PLLC_open
+0084c638   CloseFastMode
+0084e588   CorePllcHwSetup
+0084bfc0   DDR3Init
+008534e0   HOSTclose
+00852080   HOSTlseek
+00852480   HOSTopen
+00852e20   HOSTread
+00850e20   HOSTrename
+00852ee0   HOSTunlink
+00852fa0   HOSTwrite
+0084c5ec   OpenFastMode
+0084e164   PLL_init
+0084c5ac   Program16Data
+0084c610   ProgramFastMode
+0084c394   SectorErase
+0084bdb4   SetDDR3PllConfig
+0084de0c   Set_Pll1
+0084dde0   Wait_Soft
+00854c88   __CIOBUF_
+00854e2c   __TI_CINIT_Base
+00854e3c   __TI_CINIT_Limit
+00854e18   __TI_Handler_Table_Base
+00854e24   __TI_Handler_Table_Limit
+UNDEFED    __TI_INITARRAY_Base
+UNDEFED    __TI_INITARRAY_Limit
+0084b000   __TI_STACK_END
+0000a000   __TI_STACK_SIZE
+00000000   __TI_STATIC_BASE
+00041000   __TI_SYSMEM_SIZE
+UNDEFED    __TI_TLS_INIT_Base
+UNDEFED    __TI_TLS_INIT_Limit
+00000001   __TI_args_main
+00853f00   __TI_cpp_init
+00854420   __TI_decompress_none
+00854440   __TI_decompress_rle24
+00854b18   __TI_enable_exit_profile_output
+ffffffff   __TI_pprof_out_hndl
+ffffffff   __TI_prof_data_size
+ffffffff   __TI_prof_data_start
+00853420   __TI_tls_init
+008528e0   __TI_zero_init
+ffffffff   __binit__
+0084c9a0   __c6xabi_divd
+00852560   __c6xabi_divi
+00853120   __c6xabi_divu
+00850fc0   __c6xabi_divul
+0084fba0   __c6xabi_divull
+00854360   __c6xabi_errno_addr
+00853f60   __c6xabi_frcmpyd_div
+00854260   __c6xabi_isinf
+00853d00   __c6xabi_llshl
+00853fc0   __c6xabi_llshru
+00854380   __c6xabi_negll
+ffffffff   __c_args__
+00852560   __divi
+00853120   __divu
+00854b34   __errno
+008542e0   _args_main
+00852180   _auto_init_elf
+008519c0   _buff_read
+00853d80   _c_int00
+00853580   _cleanup
+00854b10   _cleanup_ptr
+00851ae0   _closefile
+00854588   _ctypes_
+008531e0   _doflush
+00854b14   _dtors_ptr
+00854b30   _ft_end
+00854818   _ftable
+00854b28   _lock
+00853760   _minit
+008543a0   _nop
+0084d520   _printfi
+008532a0   _rd_ok
+00841000   _stack
+00854020   _subcull
+00800000   _sys_memory
+00854b40   _tmpnams
+00854b2c   _unlock
+00852280   _wrt_ok
+00854400   abort
+00852720   atoi
+ffffffff   binit
+00852800   close
+00852380   copy_in
+008515e0   creat_progress_bar
+00851714   destory_progress_bar
+0084fa90   emif16_init
+00854b34   errno
+00853360   exit
+00854080   fclose
+008529c0   fflush
+008540e0   fopen
+00850480   fputc
+0084e1c0   fputs
+0084eee0   fread
+0084f6c0   free
+00851e40   fseek
+00851f60   ftell
+00853060   getcore_clk
+00853940   lseek
+00852aa0   ltoa
+00852bc0   main
+008512e0   malloc
+00854140   memccpy
+008539e0   memcpy
+00852c60   memset
+00851460   open
+0084fa58   platform_delaycycles
+00852d40   printf
+0084c64c   program_boot_to_flash
+00851628   progress_bar
+0084c888   qryShow
+00853bc0   read
+00853e00   readmsg
+00853e80   remove
+0084c340   s29glWrite16bit
+008508a0   setvbuf
+0084c36c   sm29glRead16bit
+008516d4   stop_progress_bar
+00853e80   unlink
+00853c60   write
+00854200   writemsg
+0084bf74   xmc_setup
+
+
+GLOBAL SYMBOLS: SORTED BY Symbol Address 
+
+address    name
+--------   ----
+00000000   __TI_STATIC_BASE
+00000001   __TI_args_main
+0000a000   __TI_STACK_SIZE
+00041000   __TI_SYSMEM_SIZE
+00800000   _sys_memory
+00841000   _stack
+0084b000   __TI_STACK_END
+0084bdb4   SetDDR3PllConfig
+0084bf74   xmc_setup
+0084bfc0   DDR3Init
+0084c340   s29glWrite16bit
+0084c36c   sm29glRead16bit
+0084c394   SectorErase
+0084c5ac   Program16Data
+0084c5ec   OpenFastMode
+0084c610   ProgramFastMode
+0084c638   CloseFastMode
+0084c64c   program_boot_to_flash
+0084c888   qryShow
+0084c9a0   __c6xabi_divd
+0084d520   _printfi
+0084dde0   Wait_Soft
+0084de0c   Set_Pll1
+0084e164   PLL_init
+0084e1c0   fputs
+0084e588   CorePllcHwSetup
+0084eee0   fread
+0084f6c0   free
+0084fa58   platform_delaycycles
+0084fa90   emif16_init
+0084fba0   __c6xabi_divull
+00850480   fputc
+008508a0   setvbuf
+00850e20   HOSTrename
+00850fc0   __c6xabi_divul
+008512e0   malloc
+00851460   open
+008515e0   creat_progress_bar
+00851628   progress_bar
+008516d4   stop_progress_bar
+00851714   destory_progress_bar
+008519c0   _buff_read
+00851ae0   _closefile
+00851e40   fseek
+00851f60   ftell
+00852080   HOSTlseek
+00852180   _auto_init_elf
+00852280   _wrt_ok
+00852380   copy_in
+00852480   HOSTopen
+00852560   __c6xabi_divi
+00852560   __divi
+00852720   atoi
+00852800   close
+008528e0   __TI_zero_init
+008529c0   fflush
+00852aa0   ltoa
+00852bc0   main
+00852c60   memset
+00852d40   printf
+00852e20   HOSTread
+00852ee0   HOSTunlink
+00852fa0   HOSTwrite
+00853060   getcore_clk
+00853120   __c6xabi_divu
+00853120   __divu
+008531e0   _doflush
+008532a0   _rd_ok
+00853360   exit
+00853420   __TI_tls_init
+008534e0   HOSTclose
+00853580   _cleanup
+00853760   _minit
+00853940   lseek
+008539e0   memcpy
+00853bc0   read
+00853c60   write
+00853d00   __c6xabi_llshl
+00853d80   _c_int00
+00853e00   readmsg
+00853e80   remove
+00853e80   unlink
+00853f00   __TI_cpp_init
+00853f60   __c6xabi_frcmpyd_div
+00853fc0   __c6xabi_llshru
+00854020   _subcull
+00854080   fclose
+008540e0   fopen
+00854140   memccpy
+00854200   writemsg
+00854258   C$$IO$$
+00854260   __c6xabi_isinf
+008542e0   _args_main
+00854320   CSL_PLLC_open
+00854360   __c6xabi_errno_addr
+00854380   __c6xabi_negll
+008543a0   _nop
+00854400   C$$EXIT
+00854400   abort
+00854420   __TI_decompress_none
+00854440   __TI_decompress_rle24
+00854588   _ctypes_
+00854818   _ftable
+00854b10   _cleanup_ptr
+00854b14   _dtors_ptr
+00854b18   __TI_enable_exit_profile_output
+00854b28   _lock
+00854b2c   _unlock
+00854b30   _ft_end
+00854b34   __errno
+00854b34   errno
+00854b40   _tmpnams
+00854c88   __CIOBUF_
+00854e18   __TI_Handler_Table_Base
+00854e24   __TI_Handler_Table_Limit
+00854e2c   __TI_CINIT_Base
+00854e3c   __TI_CINIT_Limit
+ffffffff   __TI_pprof_out_hndl
+ffffffff   __TI_prof_data_size
+ffffffff   __TI_prof_data_start
+ffffffff   __binit__
+ffffffff   __c_args__
+ffffffff   binit
+UNDEFED    __TI_INITARRAY_Base
+UNDEFED    __TI_INITARRAY_Limit
+UNDEFED    __TI_TLS_INIT_Base
+UNDEFED    __TI_TLS_INIT_Limit
+
+[127 symbols]

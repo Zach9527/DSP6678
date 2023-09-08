@@ -1,0 +1,27 @@
+dspbootLoader.out			/*input file*/
+/*-q*/		/*mei you duo da yi yi*/
+-map  BootLoader.mxp	/*generate map file*/
+-byte
+
+/*-----------imge mode options------------*/
+-image			/*generate memery image format file*/ 
+/*under image mode should include -zeor,or don't include -zero*/ 
+-zero			/*reset address origin to 0*/
+/*under image mode -fill work*/
+/*-fill 0x00*/		/*fill 0*/
+
+/*------------boot loader optinos-----------*/
+-boot				/*generate boot loader format file*/
+-bootorg 0x70000400	/*Specify the source address of the boot loader table.6416 is emifb's ce1*/
+-bootsection .boot 0x70000000	/*give boot section & addr*/
+-e _c_int00
+
+-order M		/*little-endian*/
+
+/*-i*/			/*intel format*/
+-b			/*convert memery image format file to bin file*/
+
+ROMS
+{
+	FLASH:	org=0x70000000, len=0x20000, romwidth=16, memwidth=16, fill = 0x0, files={dspbootloader.bin}
+}

@@ -1,0 +1,1 @@
+"./progress_bar.obj" "./main.obj" "./flash.obj" "./evmc6678.obj" "./emif.obj" "./csl_pllcGetBaseAddress.obj" "./PLL2.obj" "./PLL.obj" "./DDR3_800M.obj" "../platform_utils.cmd" -l"libc.a" 

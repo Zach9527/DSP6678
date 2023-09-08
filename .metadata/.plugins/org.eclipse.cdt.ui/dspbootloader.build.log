@@ -1,0 +1,130 @@
+
+**** Build of configuration Debug for project dspbootloader ****
+
+"C:\\ti\\ccsv5\\utils\\bin\\gmake" -k all 
+'Building file: ../boot.asm'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000_7.4.4/bin/cl6x" -mv6600 --abi=coffabi -g --include_path="D:/ORC2242/ORC2242/orc2242/dspbootloader/drv" --include_path="C:/ti/ccsv5/tools/compiler/c6000_7.4.4/include" --include_path="D:/ORC2242/ORC2242/orc2242/dspbootloader/common" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages/ti/csl" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages" --display_error_number --diag_warning=225 --diag_wrap=off --preproc_with_compile --preproc_dependency="boot.pp"  "../boot.asm"
+"../boot.asm", WARNING! at line 122: [W9999] Placing data in a code section (.boot) is discouraged. The data may be interpreted as code. This section will not be compressed.
+No Assembly Errors, 1 Assembly Warning
+		MVKL  COPY_TABLE, a0
+
+'Finished building: ../boot.asm'
+' '
+'Building file: ../bootloader.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000_7.4.4/bin/cl6x" -mv6600 --abi=coffabi -g --include_path="D:/ORC2242/ORC2242/orc2242/dspbootloader/drv" --include_path="C:/ti/ccsv5/tools/compiler/c6000_7.4.4/include" --include_path="D:/ORC2242/ORC2242/orc2242/dspbootloader/common" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages/ti/csl" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages" --display_error_number --diag_warning=225 --diag_wrap=off --preproc_with_compile --preproc_dependency="bootloader.pp"  "../bootloader.c"
+"../bootloader.c", line 138: warning #179-D: function "bootInterrupt" was declared but never referenced
+'Finished building: ../bootloader.c'
+' '
+'Building file: ../vecs.asm'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000_7.4.4/bin/cl6x" -mv6600 --abi=coffabi -g --include_path="D:/ORC2242/ORC2242/orc2242/dspbootloader/drv" --include_path="C:/ti/ccsv5/tools/compiler/c6000_7.4.4/include" --include_path="D:/ORC2242/ORC2242/orc2242/dspbootloader/common" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages/ti/csl" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages" --display_error_number --diag_warning=225 --diag_wrap=off --preproc_with_compile --preproc_dependency="vecs.pp"  "../vecs.asm"
+'Finished building: ../vecs.asm'
+' '
+'Building file: ../drv/DDR_NormalTest.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000_7.4.4/bin/cl6x" -mv6600 --abi=coffabi -g --include_path="D:/ORC2242/ORC2242/orc2242/dspbootloader/drv" --include_path="C:/ti/ccsv5/tools/compiler/c6000_7.4.4/include" --include_path="D:/ORC2242/ORC2242/orc2242/dspbootloader/common" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages/ti/csl" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages" --display_error_number --diag_warning=225 --diag_wrap=off --preproc_with_compile --preproc_dependency="drv/DDR_NormalTest.pp" --obj_directory="drv"  "../drv/DDR_NormalTest.c"
+'Finished building: ../drv/DDR_NormalTest.c'
+' '
+'Building file: ../drv/EMIF16_NormalTest.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000_7.4.4/bin/cl6x" -mv6600 --abi=coffabi -g --include_path="D:/ORC2242/ORC2242/orc2242/dspbootloader/drv" --include_path="C:/ti/ccsv5/tools/compiler/c6000_7.4.4/include" --include_path="D:/ORC2242/ORC2242/orc2242/dspbootloader/common" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages/ti/csl" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages" --display_error_number --diag_warning=225 --diag_wrap=off --preproc_with_compile --preproc_dependency="drv/EMIF16_NormalTest.pp" --obj_directory="drv"  "../drv/EMIF16_NormalTest.c"
+'Finished building: ../drv/EMIF16_NormalTest.c'
+' '
+'Building file: ../drv/bootCfg_dsp667x.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000_7.4.4/bin/cl6x" -mv6600 --abi=coffabi -g --include_path="D:/ORC2242/ORC2242/orc2242/dspbootloader/drv" --include_path="C:/ti/ccsv5/tools/compiler/c6000_7.4.4/include" --include_path="D:/ORC2242/ORC2242/orc2242/dspbootloader/common" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages/ti/csl" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages" --display_error_number --diag_warning=225 --diag_wrap=off --preproc_with_compile --preproc_dependency="drv/bootCfg_dsp667x.pp" --obj_directory="drv"  "../drv/bootCfg_dsp667x.c"
+'Finished building: ../drv/bootCfg_dsp667x.c'
+' '
+'Building file: ../drv/cic_dsp667x.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000_7.4.4/bin/cl6x" -mv6600 --abi=coffabi -g --include_path="D:/ORC2242/ORC2242/orc2242/dspbootloader/drv" --include_path="C:/ti/ccsv5/tools/compiler/c6000_7.4.4/include" --include_path="D:/ORC2242/ORC2242/orc2242/dspbootloader/common" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages/ti/csl" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages" --display_error_number --diag_warning=225 --diag_wrap=off --preproc_with_compile --preproc_dependency="drv/cic_dsp667x.pp" --obj_directory="drv"  "../drv/cic_dsp667x.c"
+"../drv/cic_dsp667x.c", line 112: warning #179-D: variable "intPend" was declared but never referenced
+'Finished building: ../drv/cic_dsp667x.c'
+' '
+'Building file: ../drv/ddr_dsp667x.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000_7.4.4/bin/cl6x" -mv6600 --abi=coffabi -g --include_path="D:/ORC2242/ORC2242/orc2242/dspbootloader/drv" --include_path="C:/ti/ccsv5/tools/compiler/c6000_7.4.4/include" --include_path="D:/ORC2242/ORC2242/orc2242/dspbootloader/common" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages/ti/csl" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages" --display_error_number --diag_warning=225 --diag_wrap=off --preproc_with_compile --preproc_dependency="drv/ddr_dsp667x.pp" --obj_directory="drv"  "../drv/ddr_dsp667x.c"
+'Finished building: ../drv/ddr_dsp667x.c'
+' '
+'Building file: ../drv/emif_dsp667x.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000_7.4.4/bin/cl6x" -mv6600 --abi=coffabi -g --include_path="D:/ORC2242/ORC2242/orc2242/dspbootloader/drv" --include_path="C:/ti/ccsv5/tools/compiler/c6000_7.4.4/include" --include_path="D:/ORC2242/ORC2242/orc2242/dspbootloader/common" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages/ti/csl" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages" --display_error_number --diag_warning=225 --diag_wrap=off --preproc_with_compile --preproc_dependency="drv/emif_dsp667x.pp" --obj_directory="drv"  "../drv/emif_dsp667x.c"
+'Finished building: ../drv/emif_dsp667x.c'
+' '
+'Building file: ../drv/flashdrv.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000_7.4.4/bin/cl6x" -mv6600 --abi=coffabi -g --include_path="D:/ORC2242/ORC2242/orc2242/dspbootloader/drv" --include_path="C:/ti/ccsv5/tools/compiler/c6000_7.4.4/include" --include_path="D:/ORC2242/ORC2242/orc2242/dspbootloader/common" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages/ti/csl" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages" --display_error_number --diag_warning=225 --diag_wrap=off --preproc_with_compile --preproc_dependency="drv/flashdrv.pp" --obj_directory="drv"  "../drv/flashdrv.c"
+'Finished building: ../drv/flashdrv.c'
+' '
+'Building file: ../drv/irq_dsp667x.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000_7.4.4/bin/cl6x" -mv6600 --abi=coffabi -g --include_path="D:/ORC2242/ORC2242/orc2242/dspbootloader/drv" --include_path="C:/ti/ccsv5/tools/compiler/c6000_7.4.4/include" --include_path="D:/ORC2242/ORC2242/orc2242/dspbootloader/common" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages/ti/csl" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages" --display_error_number --diag_warning=225 --diag_wrap=off --preproc_with_compile --preproc_dependency="drv/irq_dsp667x.pp" --obj_directory="drv"  "../drv/irq_dsp667x.c"
+'Finished building: ../drv/irq_dsp667x.c'
+' '
+'Building file: ../drv/pll_dsp667x.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000_7.4.4/bin/cl6x" -mv6600 --abi=coffabi -g --include_path="D:/ORC2242/ORC2242/orc2242/dspbootloader/drv" --include_path="C:/ti/ccsv5/tools/compiler/c6000_7.4.4/include" --include_path="D:/ORC2242/ORC2242/orc2242/dspbootloader/common" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages/ti/csl" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages" --display_error_number --diag_warning=225 --diag_wrap=off --preproc_with_compile --preproc_dependency="drv/pll_dsp667x.pp" --obj_directory="drv"  "../drv/pll_dsp667x.c"
+'Finished building: ../drv/pll_dsp667x.c'
+' '
+'Building file: ../drv/progress_bar.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000_7.4.4/bin/cl6x" -mv6600 --abi=coffabi -g --include_path="D:/ORC2242/ORC2242/orc2242/dspbootloader/drv" --include_path="C:/ti/ccsv5/tools/compiler/c6000_7.4.4/include" --include_path="D:/ORC2242/ORC2242/orc2242/dspbootloader/common" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages/ti/csl" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages" --display_error_number --diag_warning=225 --diag_wrap=off --preproc_with_compile --preproc_dependency="drv/progress_bar.pp" --obj_directory="drv"  "../drv/progress_bar.c"
+'Finished building: ../drv/progress_bar.c'
+' '
+'Building file: ../drv/psc_dsp667x.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000_7.4.4/bin/cl6x" -mv6600 --abi=coffabi -g --include_path="D:/ORC2242/ORC2242/orc2242/dspbootloader/drv" --include_path="C:/ti/ccsv5/tools/compiler/c6000_7.4.4/include" --include_path="D:/ORC2242/ORC2242/orc2242/dspbootloader/common" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages/ti/csl" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages" --display_error_number --diag_warning=225 --diag_wrap=off --preproc_with_compile --preproc_dependency="drv/psc_dsp667x.pp" --obj_directory="drv"  "../drv/psc_dsp667x.c"
+'Finished building: ../drv/psc_dsp667x.c'
+' '
+'Building file: ../drv/uart_dsp6678.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000_7.4.4/bin/cl6x" -mv6600 --abi=coffabi -g --include_path="D:/ORC2242/ORC2242/orc2242/dspbootloader/drv" --include_path="C:/ti/ccsv5/tools/compiler/c6000_7.4.4/include" --include_path="D:/ORC2242/ORC2242/orc2242/dspbootloader/common" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages/ti/csl" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages" --display_error_number --diag_warning=225 --diag_wrap=off --preproc_with_compile --preproc_dependency="drv/uart_dsp6678.pp" --obj_directory="drv"  "../drv/uart_dsp6678.c"
+'Finished building: ../drv/uart_dsp6678.c'
+' '
+'Building file: ../common/common.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000_7.4.4/bin/cl6x" -mv6600 --abi=coffabi -g --include_path="D:/ORC2242/ORC2242/orc2242/dspbootloader/drv" --include_path="C:/ti/ccsv5/tools/compiler/c6000_7.4.4/include" --include_path="D:/ORC2242/ORC2242/orc2242/dspbootloader/common" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages/ti/csl" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages" --display_error_number --diag_warning=225 --diag_wrap=off --preproc_with_compile --preproc_dependency="common/common.pp" --obj_directory="common"  "../common/common.c"
+"../common/common.c", line 855: warning #179-D: variable "i" was declared but never referenced
+'Finished building: ../common/common.c'
+' '
+'Building file: ../common/delay.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000_7.4.4/bin/cl6x" -mv6600 --abi=coffabi -g --include_path="D:/ORC2242/ORC2242/orc2242/dspbootloader/drv" --include_path="C:/ti/ccsv5/tools/compiler/c6000_7.4.4/include" --include_path="D:/ORC2242/ORC2242/orc2242/dspbootloader/common" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages/ti/csl" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages" --display_error_number --diag_warning=225 --diag_wrap=off --preproc_with_compile --preproc_dependency="common/delay.pp" --obj_directory="common"  "../common/delay.c"
+'Finished building: ../common/delay.c'
+' '
+'Building file: ../common/irq.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000_7.4.4/bin/cl6x" -mv6600 --abi=coffabi -g --include_path="D:/ORC2242/ORC2242/orc2242/dspbootloader/drv" --include_path="C:/ti/ccsv5/tools/compiler/c6000_7.4.4/include" --include_path="D:/ORC2242/ORC2242/orc2242/dspbootloader/common" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages/ti/csl" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages" --display_error_number --diag_warning=225 --diag_wrap=off --preproc_with_compile --preproc_dependency="common/irq.pp" --obj_directory="common"  "../common/irq.c"
+"../common/irq.c", line 175: warning #179-D: function "intClear" was declared but never referenced
+"../common/irq.c", line 205: warning #179-D: function "intMap" was declared but never referenced
+'Finished building: ../common/irq.c'
+' '
+'Building target: dspbootloader.out'
+'Invoking: C6000 Linker'
+"C:/ti/ccsv5/tools/compiler/c6000_7.4.4/bin/cl6x" -mv6600 --abi=coffabi -g --display_error_number --diag_warning=225 --diag_wrap=off -z -m"dspbootloader.map" -i"C:/ti/ccsv5/tools/compiler/c6000_7.4.4/lib" -i"C:/ti/ccsv5/tools/compiler/c6000_7.4.4/include" --reread_libs --warn_sections --display_error_number --diag_wrap=off --xml_link_info="dspbootloader_linkInfo.xml" --rom_model -o "dspbootloader.out"  "./common/irq.obj" "./common/delay.obj" "./common/common.obj" "./drv/uart_dsp6678.obj" "./drv/psc_dsp667x.obj" "./drv/progress_bar.obj" "./drv/pll_dsp667x.obj" "./drv/irq_dsp667x.obj" "./drv/flashdrv.obj" "./drv/emif_dsp667x.obj" "./drv/ddr_dsp667x.obj" "./drv/cic_dsp667x.obj" "./drv/bootCfg_dsp667x.obj" "./drv/EMIF16_NormalTest.obj" "./drv/DDR_NormalTest.obj" "./vecs.obj" "./bootloader.obj" "./boot.obj" "../BootLoaderLink.cmd" -l"libc.a" 
+<Linking>
+warning #10247-D: creating output section ".UART_DATA_BUF" without a SECTIONS specification
+'Finished building target: dspbootloader.out'
+' '
+..\EMIF16_BootLoader.bat
+
+D:\ORC2242\ORC2242\orc2242\dspbootloader\Debug>copy ..\Debug\dspbootloader.out ..\bin\dspbootloader.out 
+已复制         1 个文件。
+
+D:\ORC2242\ORC2242\orc2242\dspbootloader\Debug>cd ..\bin 
+
+D:\ORC2242\ORC2242\orc2242\dspbootloader\bin>hex6x.exe BootLoaderBin.hexcmd 
+Translating to Binary format...
+   "dspbootLoader.out"   ==> .boot
+   "dspbootLoader.out"   ==> .vecs 	(BOOT LOAD)
+   "dspbootLoader.out"   ==> .cinit 	(BOOT LOAD)
+   "dspbootLoader.out"   ==> .text 	(BOOT LOAD)
+   "dspbootLoader.out"   ==> .const 	(BOOT LOAD)
+   "dspbootLoader.out"   ==> .switch 	(BOOT LOAD)
+
+D:\ORC2242\ORC2242\orc2242\dspbootloader\bin>rem pause 
+' '
+
+**** Build Finished ****

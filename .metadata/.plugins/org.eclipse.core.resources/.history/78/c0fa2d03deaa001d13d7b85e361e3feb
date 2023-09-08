@@ -1,0 +1,122 @@
+/*
+ * Bsp.h
+ *
+ *  Created on: 2023-1-31
+ *      Author: ORC-C001
+ */
+
+#ifndef BSP_H_
+#define BSP_H_
+
+
+#include "KeyStone_common.h"
+#include "KeyStone_SRIO_init_drv.h"
+#include "datatype.h"
+
+#define STA_OK 0
+#define STA_ERR 1
+/*SRIO */
+#define  SRIO_BASEADDR             0xA0001000
+#define  RS422_TXRX_FIFO(n)       (SRIO_BASEADDR+n*0x1000)
+/*DDR */
+#define DDR_WRITE8(addr,value)      *((volatile UINT8 *) (addr)) = value
+#define DDR_READ8(addr)             (*(volatile UINT8 *) (addr))
+#define DDR_WRITE16(addr,value)     *((volatile UINT16 *)(addr)) = value
+#define DDR_READ16(addr)            (*(volatile UINT16 *)(addr))
+#define DDR_WRITE32(addr,value)     *((volatile UINT32 *)(addr)) = value
+#define DDR_READ32(addr)            (*(volatile UINT32 *)(addr))
+#define DDR_WRITE64(addr,value)     *((volatile UINT64 *)(addr)) = value
+#define DDR_READ64(addr)            (*(volatile UINT64 *)(addr))
+/* addr define*/
+#define EMIF16_CE1 0x74000000
+#define EMIF16_CE2 0x78000000
+#define EMIF16_CE3 0x7C000000
+#define FPGA_INFO_ADDR                   EMIF16_CE3
+#define FPGA_CLK_LOCK_ADDR              (EMIF16_CE3+0x20*2)
+#define FPGA_TEST_ADDR                  (EMIF16_CE3+0x30*2)
+#define DOORBELL_TEST_ADDR              (EMIF16_CE3+0x34*2)//door bell 测试寄存器
+#define MSG_DOORBELL_ADDR               (EMIF16_CE3+0x38*2)// door bell 消息寄存器
+#define DSP_IO_TEST_ADDR                (EMIF16_CE3+0x3c*2)
+#define M_INT_CTRL_ADDR                 (EMIF16_CE3+0x100*2)
+#define M_INT_STA_ADDR                  (EMIF16_CE3+0x104*2)
+#define RS422_BASE_ADDR                 (EMIF16_CE3+0x1000*2)
+#define SPI_BASE_ADDR                   (EMIF16_CE3+0x2000*2)
+
+/* register define*/
+#define FPGA_INFO_REG(n)                (*(volatile Uint32 *)(FPGA_INFO_ADDR+n*0x2))
+#define FPGA_CLK_LOCK_STA_REG           (*(volatile Uint32 *)FPGA_CLK_LOCK_ADDR)
+#define FPGA_TEST_REG_WRITE(value)      *((volatile Uint32 *)FPGA_TEST_ADDR) = value
+#define FPGA_TEST_REG_READ              (*(volatile Uint32 *)FPGA_TEST_ADDR)
+#define DOORBELL_TEST_REG               *((volatile Uint32 *)DOORBELL_TEST_ADDR) = 1 //使能一次doorbell发送，发送完成后自动清零
+#define MSG_DOORBELL_REG(msg,dstid)     *((volatile Uint32 *)MSG_DOORBELL_ADDR) = (((Uint16)msg << 16) | (Uint16)(dstid))//msg:发送门铃消息中携带的消息数据，dstid:发送门铃消息中的目的ID
+#define DSP_IO_TEST_REG(value)          *((volatile Uint32 *)DSP_IO_TEST_ADDR) = value//位0~15对应gpio0~15中断
+#define M_INT_CTRL_REG(value)           *((volatile Uint32 *)M_INT_CTRL_ADDR) = value//rs422:bit0 ,spi:bit1。0关闭中断，1打开中断
+#define M_INT_STA_REG                   (*(volatile Uint32 *)M_INT_STA_ADDR)//rs422:bit0 ,spi:bit1。0未产生过中断，1产生过中断
+/*rs422 register*/
+#define RS422_CTR_REG(n,value)          *((volatile Uint32 *)(RS422_BASE_ADDR+n*0x100))      = value
+#define RS422_BRSR_REG(n,value)         *((volatile Uint32 *)(RS422_BASE_ADDR+(0x04+n*0x100)*2)) = value
+#define RS422_STA_REG(n)                (*(volatile Uint32 *)(RS422_BASE_ADDR+(0x08+n*0x100)*2))
+#define RS422_TX_FIFO_REG(n,value)      *((volatile Uint32 *)(RS422_BASE_ADDR+(0x0c+n*0x100)*2)) = value
+#define RS422_RX_FIFO_REG(n)            (*(volatile Uint32 *)(RS422_BASE_ADDR+(0x10+n*0x100)*2))
+#define RS422_TX_SIZE_REG(n,value)      *((volatile Uint32 *)(RS422_BASE_ADDR+(0x14+n*0x100)*2)) = value
+#define RS422_RX_SIZE_REG(n)            (*(volatile Uint32 *)(RS422_BASE_ADDR+(0x18+n*0x100)*2))
+#define RS422_FIFO_LENGTH(n,value)      *((volatile Uint32 *)(RS422_BASE_ADDR+(0x1c+n*0x100)*2)) = value
+#define RS422_TXFIFO_GET_REG(n)         (*(volatile Uint32 *)(RS422_BASE_ADDR+(0x20+n*0x100)*2))
+/*spi register*/
+#define SPI_CTR_REG(n,value)            *((volatile Uint32 *)(SPI_BASE_ADDR+n*0x100))      = value
+#define SPI_BRSR_REG(n,value)           *((volatile Uint32 *)(SPI_BASE_ADDR+(0x04+n*0x100)*2)) = value
+#define SPI_STA_REG(n)                  (*(volatile Uint32 *)(SPI_BASE_ADDR+(0x08+n*0x100)*2))
+#define SPI_TX_FIFO_REG(n,value)        *((volatile Uint32 *)(SPI_BASE_ADDR+(0x0c+n*0x100)*2)) = value
+#define SPI_RX_FIFO_REG(n)              (*(volatile Uint32 *)(SPI_BASE_ADDR+(0x10+n*0x100)*2))
+#define SPI_TX_SIZE_REG(n,value)        *((volatile Uint32 *)(SPI_BASE_ADDR+(0x14+n*0x100)*2)) = value
+#define SPI_RX_SIZE_REG(n)              (*(volatile Uint32 *)(SPI_BASE_ADDR+(0x18+n*0x100)*2))
+/*emif test reg*/
+#define EMIF_CE1_WRITE16(addr,data)     *((volatile Uint16 *)(EMIF16_CE1 + (addr)*2)) = data
+#define EMIF_CE1_READ16(addr)           (*(volatile Uint16 *)(EMIF16_CE1 + (addr)*2))
+#define EMIF_CE2_WRITE16(addr,data)     *((volatile Uint16 *)(EMIF16_CE2 + (addr)*2)) = data
+#define EMIF_CE2_READ16(addr)           (*(volatile Uint16 *)(EMIF16_CE2 + (addr)*2))
+/*function*/
+#define EN_TX (1 << 0)
+#define DIS_TX (0 << 0)
+#define CLR_TX_FIFO (1 << 1)
+#define EN_RX_INT (1 << 8) //enable rx interrupt
+#define CLR_RX_FIFO (1 << 9) //clear rx fifo
+#define CLR_RX_INT (1 << 10) //clear rx interrupt bit
+#define GPIO8_HIGH   (1 << 8)
+#define GPIO9_HIGH   (1 << 9)
+#define GPIO10_HIGH  (1 << 10)
+#define GPIO11_HIGH  (1 << 11)
+#define GPIO12_HIGH  (1 << 12)
+#define GPIO13_HIGH  (1 << 13)
+#define GPIO14_HIGH  (1 << 14)
+#define GPIO15_HIGH  (1 << 15)
+#define SPI_INT      (1 << 1)
+#define RS422_INT    (1 << 0)
+
+
+#define RS422_CH_MAX_NUM    12
+#define SPI_CH_MAX_NUM      6
+
+typedef Uint16 ERR_STA;
+
+#define  FIFO_MAX_SIZE   200
+typedef struct {
+	uint8_t dat[FIFO_MAX_SIZE];
+	int32_t enp;//鍏ラ槦鎸囬拡
+	int32_t dep;//鍑洪槦鎸囬拡
+} DAT_FIFO_TYP; 
+
+void fpgaVerGet(void);
+STATUS rs422Init(Uint16 channel,Uint16 baud);
+Uint16 rs422Read(Uint16 channel,Uint8 *pbuf,Uint16 len);
+STATUS rs422Write(Uint16 channel,Uint8 *pbuf,Uint16 len);
+STATUS fpgaSpiInit(Uint32 channel,Uint32 baud);
+Uint32 fpgaSpiRead(Uint32 channel,Uint8 *pbuf,Uint32 len);
+STATUS fpgaSpiWrite(Uint32 channel,Uint8 *pbuf,Uint32 len);
+Int32 Keystone_SRIO_DirectIO(Uint32 uiLocalAddress, Uint32 uiRemoteAddress,
+    Uint32 uiDestID, Uint32 uiByteCount, Uint32 uiPort, Uint32 uiLSU_No,
+    SRIO_Packet_Type packetType);
+void big2little(UINT8* pbuf, int len);
+void rs422Trans(Uint16 channel,Uint8 *pbuf,Uint16 len);
+
+#endif /* BSP_H_ */

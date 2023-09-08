@@ -1,0 +1,29 @@
+
+**** Build of configuration Debug for project core1 ****
+
+"C:\\ti\\ccsv5\\utils\\bin\\gmake" -k all 
+'Building file: ../src/KeyStone_common.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000_7.4.4/bin/cl6x" -mv6600 --abi=eabi -g --include_path="C:/ti/ccsv5/tools/compiler/c6000_7.4.4/include" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages/ti/csl" --display_error_number --diag_warning=225 --diag_wrap=off --preproc_with_compile --preproc_dependency="src/KeyStone_common.pp" --obj_directory="src"  "../src/KeyStone_common.c"
+'Finished building: ../src/KeyStone_common.c'
+' '
+'Building file: ../src/Uart_Init.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000_7.4.4/bin/cl6x" -mv6600 --abi=eabi -g --include_path="C:/ti/ccsv5/tools/compiler/c6000_7.4.4/include" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages/ti/csl" --display_error_number --diag_warning=225 --diag_wrap=off --preproc_with_compile --preproc_dependency="src/Uart_Init.pp" --obj_directory="src"  "../src/Uart_Init.c"
+"../src/Uart_Init.c", line 239: warning #994-D: missing return statement at end of non-void function "uartCfg"
+"../src/Uart_Init.c", line 419: warning #179-D: variable "eventFlag" was declared but never referenced
+'Finished building: ../src/Uart_Init.c'
+' '
+'Building file: ../src/main.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000_7.4.4/bin/cl6x" -mv6600 --abi=eabi -g --include_path="C:/ti/ccsv5/tools/compiler/c6000_7.4.4/include" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages/ti/csl" --display_error_number --diag_warning=225 --diag_wrap=off --preproc_with_compile --preproc_dependency="src/main.pp" --obj_directory="src"  "../src/main.c"
+'Finished building: ../src/main.c'
+' '
+'Building target: core1.out'
+'Invoking: C6000 Linker'
+"C:/ti/ccsv5/tools/compiler/c6000_7.4.4/bin/cl6x" -mv6600 --abi=eabi -g --display_error_number --diag_warning=225 --diag_wrap=off -z -m"core1.map" -i"C:/ti/ccsv5/tools/compiler/c6000_7.4.4/lib" -i"C:/ti/ccsv5/tools/compiler/c6000_7.4.4/include" --reread_libs --warn_sections --display_error_number --diag_wrap=off --xml_link_info="core1_linkInfo.xml" --rom_model -o "core1.out"  "./src/main.obj" "./src/Uart_Init.obj" "./src/KeyStone_common.obj" "../KeyStone.cmd" -l"libc.a" 
+<Linking>
+'Finished building target: core1.out'
+' '
+
+**** Build Finished ****

@@ -1,0 +1,435 @@
+/*  ============================================================================
+ *   Copyright (c) Texas Instruments Inc 2011
+ *
+ *   Use of this software is controlled by the terms and conditions found in the
+ *   license agreement under which this software has been supplied.
+* ============================================================================
+*Example to show the usage and performance of SRIO on KeyStone DSP.
+*This example can run on C6678 EVM with digital loopback or Serdes loopback.
+*On dual Nyquist EVM, external loopback or transfer between two DSPs 
+ can be tested. You should run this project on second DSP firstly and then the 
+ first DSP
+* =============================================================================
+ *  Revision History
+ *  ===============
+ *  June 13, 2011 Brighton Feng   File Created
+ * ============================================================================
+ */
+#include <stdio.h>
+#include <string.h>
+#include "KeyStone_SRIO_init_drv.h"
+#include "srio_drv.h"
+#include "SRIO_Interrupts.h"
+#include "SRIO_PktDMA_init.h"
+#include "Uart_Init.h"
+#include "Gpio_Init.h"
+#include "pll_dsp667x.h"
+#include "ddr_dsp667x.h"
+#include "emif_dsp667x.h"
+#include "Bsp.h"
+//#include "datatype.h"
+#define DDR_WRITE32(addr,value) 	*((volatile UINT32 *)(addr)) = value
+#define DDR_READ32(addr)			(*(volatile UINT32 *)(addr))
+
+#define SRIO_DATA_ADDR 				(0x80002000+0x10000000)
+SRIO_Loopback_Mode loopback_mode= SRIO_NO_LOOPBACK;
+
+void srio_drv_init(void);
+
+/*up to 16 deviceID can be setup here*/
+SRIO_Device_ID_Routing_Config dsp0_device_ID_routing_config[]=
+{
+     /*idPattern 	idMatchMask 	routeMaintenance*/
+	{DSP0_SRIO_BASE_ID, 	0xFFFF, 	1},
+    {FPGA_SRIO_BASE_ID,     0xFFFF,     1},
+};
+
+
+
+SRIO_RX_Mode rxMode;
+
+SerdesSetup_4links serdes_cfg;
+SerdesLinkSetup serdesLinkSetup;
+SRIO_Message_Cfg msg_cfg;
+SRIO_Config srio_cfg;
+
+/*path configuration strings*/
+char * path_str[]=
+{
+	"1xLaneA                        ", 
+	"1xLaneA_1xLaneB                ",
+	"2xLaneAB                       ",
+	"1xLaneA_1xLaneB_1xLaneC_1xLaneD",  
+	"2xLaneAB_1xLaneC_1xLaneD       ",
+	"1xLaneA_1xLaneB_2xLaneCD       ",
+	"2xLaneAB_2xLaneCD              ",
+	"4xLaneABCD                     "
+};
+char * get_path_string(SRIO_1x2x4x_Path_Control srio_1x2x4x_path_control)
+{
+	if(SRIO_PATH_CTL_1xLaneA                             == srio_1x2x4x_path_control) return path_str[0];
+	else if(SRIO_PATH_CTL_1xLaneA_1xLaneB                == srio_1x2x4x_path_control) return path_str[1];
+	else if(SRIO_PATH_CTL_2xLaneAB                       == srio_1x2x4x_path_control) return path_str[2];
+	else if(SRIO_PATH_CTL_1xLaneA_1xLaneB_1xLaneC_1xLaneD== srio_1x2x4x_path_control) return path_str[3]; 
+	else if(SRIO_PATH_CTL_2xLaneAB_1xLaneC_1xLaneD       == srio_1x2x4x_path_control) return path_str[4];
+	else if(SRIO_PATH_CTL_1xLaneA_1xLaneB_2xLaneCD       == srio_1x2x4x_path_control) return path_str[5];
+	else if(SRIO_PATH_CTL_2xLaneAB_2xLaneCD              == srio_1x2x4x_path_control) return path_str[6];
+	else if(SRIO_PATH_CTL_4xLaneABCD                     == srio_1x2x4x_path_control) return path_str[7];
+	else return NULL;
+}
+
+/* identify used ports lanes according to 1x 2x 4x path configuration*/
+void srio_identify_used_ports_lanes(
+	SRIO_1x2x4x_Path_Control srio_1x2x4x_path_control)
+{
+	int i;
+	Uint32 uiPathConfig, uiPathMode;
+	Uint32 uiLaneEnableMask=0, uiLogicPortEnableMask=0;
+
+	/* SRIO 1x 2x 4x path mode configuration:
+	In a configuration 1, the following operating mode is available:
+	 Mode 0: One independent 1x port in lane A
+
+	In Configuration 2, a maximum of 2 active ports and 2 lanes per path are supported as follows:
+	 Mode 0: Two independent 1x ports in lanes A and B
+	 Mode 1: One independent 2x port in lanes {A, B}
+
+	In Configuration 4, a maximum of 4 active ports and 4 lanes per path are supported as follows:
+	 Mode 0: Four independent 1x ports in lanes A, B, C, and D
+	 Mode 1: One independent 2x port in lanes {A,B}, and two independent 1x ports in lanes C and D
+	 Mode 2: Two independent 1x ports in lanes A and B, and one independent 2x port in lanes {C,D}
+	 Mode 3: Two independent 2x ports, occupying lanes {A,B} and {C,D} respectively
+	 Mode 4: One independent 4x port in lanes {A,B,C,D}*/
+	uiPathConfig= (srio_1x2x4x_path_control&
+		CSL_SRIO_RIO_PLM_SP_PATH_CTL_PATH_CONFIGURATION_MASK)>>
+		CSL_SRIO_RIO_PLM_SP_PATH_CTL_PATH_CONFIGURATION_SHIFT;
+
+	uiPathMode= (srio_1x2x4x_path_control&
+		CSL_SRIO_RIO_PLM_SP_PATH_CTL_PATH_MODE_MASK)>>
+		CSL_SRIO_RIO_PLM_SP_PATH_CTL_PATH_MODE_SHIFT;
+
+	if(1==uiPathConfig)
+	{
+		uiLaneEnableMask= 0x1; 	/*0001*/
+
+		uiLogicPortEnableMask= 0x1; 	/*0001*/
+	}
+	else if(2==uiPathConfig)
+	{
+		uiLaneEnableMask= 0x3; 	/*0011*/
+
+		if(0==uiPathMode)
+			uiLogicPortEnableMask= 0x3; 	/*0011*/
+		else if(1==uiPathMode)
+			uiLogicPortEnableMask= 0x1; 	/*0001*/
+	}
+	else if(4==uiPathConfig)
+	{
+		uiLaneEnableMask= 0xF; 	/*1111*/
+
+		if(0==uiPathMode)
+			uiLogicPortEnableMask= 0xF; 	/*1111*/
+		else if(1==uiPathMode)
+			uiLogicPortEnableMask= 0xD; 	/*1101*/
+		else if(2==uiPathMode)
+			uiLogicPortEnableMask= 0x7; 	/*0111*/
+		else if(3==uiPathMode)
+			uiLogicPortEnableMask= 0x5; 	/*0101*/
+		else if(4==uiPathMode)
+			uiLogicPortEnableMask= 0x1; 	/*0001*/
+	}
+
+	/*enable ports data path according to 1x 2x 4x path configuration*/
+	srio_cfg.blockEn.bBLK5_8_Port_Datapath_EN[0]= uiLaneEnableMask&1;
+	srio_cfg.blockEn.bBLK5_8_Port_Datapath_EN[1]= (uiLaneEnableMask>>1)&1;
+	srio_cfg.blockEn.bBLK5_8_Port_Datapath_EN[2]= (uiLaneEnableMask>>2)&1;
+	srio_cfg.blockEn.bBLK5_8_Port_Datapath_EN[3]= (uiLaneEnableMask>>3)&1;
+
+	/*disable Serdes according to 1x 2x 4x path configuration*/
+	for(i= 0; i<4; i++ )
+	{
+		if(uiLaneEnableMask&(1<<i))
+			srio_cfg.serdes_cfg->linkSetup[i]= &serdesLinkSetup;
+		else
+			srio_cfg.serdes_cfg->linkSetup[i]= NULL;
+	}
+
+	/*enable loggical ports according to 1x 2x 4x path configuration*/
+	srio_cfg.blockEn.bLogic_Port_EN[0]= uiLogicPortEnableMask&1;
+	srio_cfg.blockEn.bLogic_Port_EN[1]= (uiLogicPortEnableMask>>1)&1;
+	srio_cfg.blockEn.bLogic_Port_EN[2]= (uiLogicPortEnableMask>>2)&1;
+	srio_cfg.blockEn.bLogic_Port_EN[3]= (uiLogicPortEnableMask>>3)&1;
+
+	printf("SRIO path configuration %s\n", 
+		get_path_string(srio_1x2x4x_path_control));
+
+}
+
+/*packet type strings*/
+char * type_str[]=
+{
+	"NREAD   " ,
+	"NWRITE  " ,
+	"NWRITE_R" ,
+	"SWRITE  " ,
+	"STREAM  " ,
+	"MESSAGE "
+};
+char * get_packet_type_string(SRIO_Packet_Type packetType)
+{
+	if(SRIO_PKT_TYPE_NREAD         == packetType) return type_str[0];
+	else if(SRIO_PKT_TYPE_NWRITE   == packetType) return type_str[1];
+	else if(SRIO_PKT_TYPE_NWRITE_R == packetType) return type_str[2];
+	else if(SRIO_PKT_TYPE_SWRITE   == packetType) return type_str[3];
+	else if(SRIO_PKT_TYPE9_STREAM  == packetType) return type_str[4];
+	else if(SRIO_PKT_TYPE11_MESSAGE== packetType) return type_str[5];
+	else return NULL;
+}
+
+Uint32 uiTestID= 1;
+/*fill data before test*/
+void InitDataBuffer(Uint32 * uipSrc, Uint32 * uipDst, Uint32 uiByteCount)
+{
+//	int i;
+	
+	if(uipSrc)
+	{
+        WritebackCache((void *)uipSrc, uiByteCount);
+        
+		uiTestID++;
+	}
+
+	if(uipDst)
+	{
+        WritebackCache((void *)uipDst, uiByteCount);
+	}
+}
+
+/*verify data after test*/
+void VerifyData(Uint32 * uipSrc, Uint32 * uipDst, Uint32 uiByteCount)
+{
+	int i;
+
+    InvalidCache((void *)uipSrc, uiByteCount);
+    InvalidCache((void *)uipDst, uiByteCount);
+    
+	CSL_XMC_invalidatePrefetchBuffer();
+
+	for(i= 0; i< uiByteCount/4; i++)
+	{
+		if(uipSrc[i]!= uipDst[i])
+		{
+			printf("data mismatch at unit %d, 0x%x (at 0x%x) != 0x%x (at 0x%x)\n", 
+				i, uipSrc[i], uipSrc, uipDst[i], uipDst);
+			return;
+		}
+	}
+}
+
+
+
+volatile Uint32 uiDoorbell_TSC= 0; 	//timestamp when doorbell interrupt happens
+void srio_doorbell_latency_test(Uint32 uiPortNum)
+{
+	Uint32 cycles;
+
+	cycles= TSCL;	
+	KeyStone_SRIO_DoorBell(uiPortNum, uiPortNum, 
+		DSP0_SRIO_BASE_ID+uiPortNum, SRIO_DOORBELL_MSG_LATENCY_TEST);
+
+	if(0==uiDoorbell_TSC)
+		asm(" IDLE"); //waiting for doorbell interupt
+	cycles= ((unsigned int)((0xFFFFFFFFl+uiDoorbell_TSC)- 
+		(unsigned long long)cycles)+ 1);
+
+	printf("doorbell latency is %4d cycles\n\n", cycles);
+}
+
+/*test mode strings*/
+char * test_mode_str[]=
+{
+	"SRIO test between two DSPs",
+	"SRIO_DIGITAL_LOOPBACK test",
+	"SRIO_SERDES_LOOPBACK test",
+	"SRIO_EXTERNAL_LINE_LOOPBACK test",
+	"SRIO_EXTERNAL_FORWARD_BACK test"
+};
+
+
+ void test_srioDio(Int32 uiByteCount)
+{
+    Int32 uiCompletionCode,i;
+    Uint32 localAddr1 = 0x90000000,remoteAddr = 0x90002400, localAddr2 = 0x94000000;
+    if(uiByteCount > 1024*1024)
+    {
+    	PRINT("test number too big\r\n");
+    	return;
+    }
+    for(i = 0; i < uiByteCount/4; i++)
+   	{
+   		DDR_WRITE32(localAddr1+i*4,i);
+   	}
+    //InitDataBuffer((Uint32*)localAddr1, (Uint32*)remoteAddr, uiByteCount);
+    uiCompletionCode = Keystone_SRIO_DirectIO(localAddr1,remoteAddr,FPGA_SRIO_BASE_ID,uiByteCount,0,0,SRIO_PKT_TYPE_NWRITE);
+    printf("%s from 0x%8x to 0x%8x, %6d bytes, completion code = %d \r\n",
+	get_packet_type_string(SRIO_PKT_TYPE_NWRITE),
+	localAddr1, remoteAddr, uiByteCount,
+	uiCompletionCode);
+    //InitDataBuffer((Uint32*)localAddr2, (Uint32*)remoteAddr, uiByteCount);
+    uiCompletionCode = Keystone_SRIO_DirectIO(localAddr2,remoteAddr,FPGA_SRIO_BASE_ID,uiByteCount,1,1,SRIO_PKT_TYPE_NREAD);
+    InvalidCache((Uint32*)localAddr2,uiByteCount);
+    printf("%s from 0x%8x to 0x%8x, %6d bytes, completion code = %d \r\n",
+	get_packet_type_string(SRIO_PKT_TYPE_NREAD),
+	remoteAddr, localAddr2, uiByteCount,
+	uiCompletionCode);
+    if(0 != memcmp((Uint32*)localAddr2,(Uint32*)localAddr1,uiByteCount))
+    {
+    	PRINT("\r\n SRIO DIO TEST FAIL");
+    }
+    else
+    {
+    	PRINT("\r\n SRIO DIO TEST SUCCEED");
+    }
+}
+
+void srio_drv_init(void)
+{
+    serdes_cfg.commonSetup.inputRefClock_MHz = 156.25;
+	/*clear configuration structrue to make sure unused field is 0*/
+	memset(&srio_cfg, 0, sizeof(srio_cfg));
+	srio_cfg.blockEn.bBLK1_LSU_EN= 1;
+	srio_cfg.blockEn.bBLK2_MAU_EN= 1;
+	srio_cfg.blockEn.bBLK3_TXU_EN= 1;
+	srio_cfg.blockEn.bBLK4_RXU_EN= 1;
+	srio_cfg.loopback_mode= loopback_mode;
+
+	srio_cfg.device_ID_routing_config= dsp0_device_ID_routing_config;
+	srio_cfg.uiNumDeviceId=
+		sizeof(dsp0_device_ID_routing_config)/sizeof(SRIO_Device_ID_Routing_Config);
+	serdes_cfg.commonSetup.loopBandwidth= SERDES_PLL_LOOP_BAND_MID;
+	srio_cfg.serdes_cfg= &serdes_cfg;
+	serdesLinkSetup.txOutputSwing    = 15; /*0~15 represents between 100 and 850 mVdfpp  */
+	serdesLinkSetup.testPattern      = SERDES_TEST_DISABLED;
+	serdesLinkSetup.rxAlign          = SERDES_RX_COMMA_ALIGNMENT_ENABLE;
+	serdesLinkSetup.rxInvertPolarity = SERDES_RX_NORMAL_POLARITY;
+	serdesLinkSetup.rxTermination    = SERDES_RX_TERM_COMMON_POINT_AC_COUPLE;
+	serdesLinkSetup.rxEqualizerConfig= SERDES_RX_EQ_ADAPTIVE;
+    serdesLinkSetup.rxCDR            = 5;
+	serdesLinkSetup.txInvertPolarity = SERDES_TX_NORMAL_POLARITY;
+	SRIO_Interrupts_Init();
+
+	serdesLinkSetup.linkSpeed_GHz= SRIO_DEFAULT_TEST_SPEED;
+	srio_cfg.srio_1x2x4x_path_control= SRIO_PATH_CTL_4xLaneABCD;
+	srio_identify_used_ports_lanes(srio_cfg.srio_1x2x4x_path_control);
+
+	KeyStone_SRIO_Init(&srio_cfg);
+   	//SRIO_PktDM_init();
+}
+
+
+//Uint8 test[] ="hellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohello";
+Uint8 pbuf[10] = {0};
+Uint8 test[20] = {0xeb,0x90,0x1,0x2,0x3,0x4,0x5,0x6,0x7,0xaa};
+Uint8 err[10] = {0xaa,0x55,0x0,0x0,0x0};
+Uint8 err1[10] = {0xaa,0x55,0x11,0x11,0x11};
+Uint8 cmp[20] = {0};
+Uint8 checksum(Uint8* pbuf)
+{
+	int i = 0;
+	Uint8 checksum = 0;
+    for(i=0;i<7;i++)
+    {
+        checksum += pbuf[i];
+    }
+    return checksum;
+}
+#define EMIF_ADDR                            0x74000000
+#define EMIF_DATA_BUS_TEST_ADDR              0x01
+#define EMIF_TEST_WRITE16(addr,data)         (*(volatile UINT16 *)(EMIF_ADDR + (addr)*2)) = (data)
+#define EMIF_TEST_READ16(addr)         		 (*(volatile UINT16 *)(EMIF_ADDR + (addr)*2))
+
+void main()
+{
+	Uint32 length = 0,i = 0,channel,timeout = 0;
+    Uint16  writeData = 0;
+	Uint16  readData = 0;
+	CPU_interrupt_init();
+	uartInit(115200);
+	GPIO_init();
+    srio_drv_init();
+    PRINT("core0 app up!\r\nV1.0 Build Time:%s,%s\r\n",__DATE__,__TIME__);
+	//test_srioDio(8);
+    //rs422Test();
+    //rs422Write(1,test,5);
+
+    while(1)
+    {
+    	writeData = (Uint16)rand();
+        EMIF_TEST_WRITE16(EMIF_DATA_BUS_TEST_ADDR, writeData);
+		readData = EMIF_TEST_READ16(EMIF_DATA_BUS_TEST_ADDR);
+        if(writeData != readData)
+		{
+			printf("write data = 0x%x, read data = 0x%x\r\n", writeData, readData);
+		}
+//    	length = RS422_RX_SIZE_REG(10);
+//    	if(length != 9)
+//    	{
+//    		printf("length err\r\n");
+//    	}
+//    	if(length >= 8)
+//    	{
+//    		rs422Trans(10,pbuf,8);
+//    		if(pbuf[0] == 0xaa && pbuf[1] == 0x55)
+//    		{
+//    			if(checksum(pbuf) == pbuf[7])
+//    			{
+//    				channel = pbuf[3]-1;
+//    				if(channel == 2 || channel == 5)
+//    				{
+//    					rs422Write(channel,test,10);
+//    				}
+//    				else
+//    				{
+//        				rs422Write(channel,test,10);
+//        				while(timeout < 0xfffff)
+//        				{
+//        					length = RS422_RX_SIZE_REG(channel);
+//        					if(length >= 10)
+//        					{
+//        						rs422Trans(channel,cmp,10);
+//        						if(memcmp(test,cmp,10) != 0)
+//        						{
+//        							rs422Write(10,err,5);
+//        							PRINT("fail\r\n");
+//        							break;
+//        						}
+//        						rs422Write(10,pbuf,5);
+//        						PRINT("succeed\r\n");
+//        						break;
+//        					}
+//                            timeout++;
+//        				}
+//                        if(timeout == 0xfffffff)
+//                            {
+//                        	PRINT("chaoshi \r\n");
+//                        }
+//                        timeout =0;
+//    				}
+//    			}
+//    			else
+//    			{
+//    				rs422Write(10,err1,5);
+//    				PRINT("jiaoyan \r\n");
+//    			}
+//    		}
+//    		else
+//    		{
+//    			rs422Write(10,err1,5);
+//    			PRINT("head err\r\n");
+//    		}
+//    	}
+    }
+
+}
+
+

@@ -1,0 +1,1 @@
+"./progress_bar.obj" "./main.obj" "./flash.obj" "./emif.obj" "./csl_pllcGetBaseAddress.obj" "./PLL.obj" "../platform_utils.cmd" -l"libc.a" 

@@ -1,0 +1,214 @@
+
+**** Clean-only build of configuration Debug for project AppPrj ****
+
+"C:\\ti\\ccsv5\\utils\\bin\\gmake" -k clean 
+DEL /F  "AppPrj.out"
+DEL /F "src\Bsp.pp" "src\Gpio_Init.pp" "src\SRIO_Interrupts.pp" "src\SRIO_PktDMA_Init.pp" "src\Uart_Init.pp" "src\main.pp" "drv\KeyStone_Navigator_init_drv.pp" "drv\KeyStone_SRIO_Init_drv.pp" "drv\KeyStone_common.pp" "drv\Keystone_Serdes_init.pp" "common\bootCfg_dsp667x.pp" "common\ddr_dsp667x.pp" "common\delay.pp" "common\emif_dsp667x.pp" "common\pll_dsp667x.pp" "common\psc_dsp667x.pp" 
+DEL /F "src\Bsp.obj" "src\Gpio_Init.obj" "src\SRIO_Interrupts.obj" "src\SRIO_PktDMA_Init.obj" "src\SRIO_vectors.obj" "src\Uart_Init.obj" "src\main.obj" "drv\KeyStone_Navigator_init_drv.obj" "drv\KeyStone_SRIO_Init_drv.obj" "drv\KeyStone_common.obj" "drv\Keystone_Serdes_init.obj" "common\bootCfg_dsp667x.obj" "common\ddr_dsp667x.obj" "common\delay.obj" "common\emif_dsp667x.obj" "common\pll_dsp667x.obj" "common\psc_dsp667x.obj" 
+DEL /F "src\SRIO_vectors.pp" 
+’“≤ªµΩ D:\ORC2242\ORC2242\orc2242\AppPrj\Debug\src\SRIO_vectors.pp
+'Finished clean'
+' '
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project AppPrj ****
+
+"C:\\ti\\ccsv5\\utils\\bin\\gmake" -k all 
+'Building file: ../src/Bsp.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000_7.4.4/bin/cl6x" -mv6600 --abi=eabi -g --include_path="C:/ti/ccsv5/tools/compiler/c6000_7.4.4/include" --include_path="D:/ORC2242/ORC2242/orc2242/AppPrj/common" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages/ti/csl" --include_path="D:/ORC2242/ORC2242/orc2242/AppPrj/drv" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages" --display_error_number --diag_warning=225 --diag_wrap=off --preproc_with_compile --preproc_dependency="src/Bsp.pp" --obj_directory="src"  "../src/Bsp.c"
+"D:/ORC2242/ORC2242/orc2242/AppPrj/common/datatype.h", line 16: warning #303-D: typedef name has already been declared (with same type)
+"D:/ORC2242/ORC2242/orc2242/AppPrj/common/datatype.h", line 19: warning #303-D: typedef name has already been declared (with same type)
+"../src/Bsp.c", line 38: warning #225-D: function declared implicitly
+"../src/Bsp.c", line 69: warning #188-D: pointless comparison of unsigned integer with zero
+"../src/Bsp.c", line 155: warning #179-D: variable "i" was declared but never referenced
+"../src/Bsp.c", line 223: warning #994-D: missing return statement at end of non-void function "rs422Read"
+"../src/Bsp.c", line 226: warning #552-D: variable "sta" was set but never used
+"../src/Bsp.c", line 241: warning #179-D: variable "fifolen" was declared but never referenced
+"../src/Bsp.c", line 280: warning #179-D: variable "i" was declared but never referenced
+"../src/Bsp.c", line 301: warning #552-D: variable "fifoLen" was set but never used
+"../src/Bsp.c", line 476: warning #994-D: missing return statement at end of non-void function "Spi_Rs422Isr"
+"../src/Bsp.c", line 536: warning #225-D: function declared implicitly
+'Finished building: ../src/Bsp.c'
+' '
+'Building file: ../src/Gpio_Init.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000_7.4.4/bin/cl6x" -mv6600 --abi=eabi -g --include_path="C:/ti/ccsv5/tools/compiler/c6000_7.4.4/include" --include_path="D:/ORC2242/ORC2242/orc2242/AppPrj/common" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages/ti/csl" --include_path="D:/ORC2242/ORC2242/orc2242/AppPrj/drv" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages" --display_error_number --diag_warning=225 --diag_wrap=off --preproc_with_compile --preproc_dependency="src/Gpio_Init.pp" --obj_directory="src"  "../src/Gpio_Init.c"
+'Finished building: ../src/Gpio_Init.c'
+' '
+'Building file: ../src/SRIO_Interrupts.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000_7.4.4/bin/cl6x" -mv6600 --abi=eabi -g --include_path="C:/ti/ccsv5/tools/compiler/c6000_7.4.4/include" --include_path="D:/ORC2242/ORC2242/orc2242/AppPrj/common" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages/ti/csl" --include_path="D:/ORC2242/ORC2242/orc2242/AppPrj/drv" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages" --display_error_number --diag_warning=225 --diag_wrap=off --preproc_with_compile --preproc_dependency="src/SRIO_Interrupts.pp" --obj_directory="src"  "../src/SRIO_Interrupts.c"
+"D:/ORC2242/ORC2242/orc2242/AppPrj/common/datatype.h", line 16: warning #303-D: typedef name has already been declared (with same type)
+"D:/ORC2242/ORC2242/orc2242/AppPrj/common/datatype.h", line 19: warning #303-D: typedef name has already been declared (with same type)
+'Finished building: ../src/SRIO_Interrupts.c'
+' '
+'Building file: ../src/SRIO_PktDMA_Init.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000_7.4.4/bin/cl6x" -mv6600 --abi=eabi -g --include_path="C:/ti/ccsv5/tools/compiler/c6000_7.4.4/include" --include_path="D:/ORC2242/ORC2242/orc2242/AppPrj/common" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages/ti/csl" --include_path="D:/ORC2242/ORC2242/orc2242/AppPrj/drv" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages" --display_error_number --diag_warning=225 --diag_wrap=off --preproc_with_compile --preproc_dependency="src/SRIO_PktDMA_Init.pp" --obj_directory="src"  "../src/SRIO_PktDMA_Init.c"
+"../src/SRIO_PktDMA_Init.c", line 63: warning #172-D: pointer points outside of underlying object
+"../src/SRIO_PktDMA_Init.c", line 64: warning #172-D: pointer points outside of underlying object
+"../src/SRIO_PktDMA_Init.c", line 65: warning #172-D: pointer points outside of underlying object
+"../src/SRIO_PktDMA_Init.c", line 66: warning #172-D: pointer points outside of underlying object
+"../src/SRIO_PktDMA_Init.c", line 76: warning #172-D: pointer points outside of underlying object
+"../src/SRIO_PktDMA_Init.c", line 76: warning #172-D: pointer points outside of underlying object
+"../src/SRIO_PktDMA_Init.c", line 77: warning #172-D: pointer points outside of underlying object
+"../src/SRIO_PktDMA_Init.c", line 77: warning #172-D: pointer points outside of underlying object
+"../src/SRIO_PktDMA_Init.c", line 79: warning #172-D: pointer points outside of underlying object
+"../src/SRIO_PktDMA_Init.c", line 79: warning #172-D: pointer points outside of underlying object
+"../src/SRIO_PktDMA_Init.c", line 80: warning #172-D: pointer points outside of underlying object
+"../src/SRIO_PktDMA_Init.c", line 80: warning #172-D: pointer points outside of underlying object
+"../src/SRIO_PktDMA_Init.c", line 82: warning #172-D: pointer points outside of underlying object
+"../src/SRIO_PktDMA_Init.c", line 82: warning #172-D: pointer points outside of underlying object
+"../src/SRIO_PktDMA_Init.c", line 83: warning #172-D: pointer points outside of underlying object
+"../src/SRIO_PktDMA_Init.c", line 83: warning #172-D: pointer points outside of underlying object
+"../src/SRIO_PktDMA_Init.c", line 85: warning #172-D: pointer points outside of underlying object
+"../src/SRIO_PktDMA_Init.c", line 85: warning #172-D: pointer points outside of underlying object
+"../src/SRIO_PktDMA_Init.c", line 86: warning #172-D: pointer points outside of underlying object
+"../src/SRIO_PktDMA_Init.c", line 86: warning #172-D: pointer points outside of underlying object
+'Finished building: ../src/SRIO_PktDMA_Init.c'
+' '
+'Building file: ../src/SRIO_vectors.asm'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000_7.4.4/bin/cl6x" -mv6600 --abi=eabi -g --include_path="C:/ti/ccsv5/tools/compiler/c6000_7.4.4/include" --include_path="D:/ORC2242/ORC2242/orc2242/AppPrj/common" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages/ti/csl" --include_path="D:/ORC2242/ORC2242/orc2242/AppPrj/drv" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages" --display_error_number --diag_warning=225 --diag_wrap=off --preproc_with_compile --preproc_dependency="src/SRIO_vectors.pp" --obj_directory="src"  "../src/SRIO_vectors.asm"
+'Finished building: ../src/SRIO_vectors.asm'
+' '
+'Building file: ../src/Uart_Init.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000_7.4.4/bin/cl6x" -mv6600 --abi=eabi -g --include_path="C:/ti/ccsv5/tools/compiler/c6000_7.4.4/include" --include_path="D:/ORC2242/ORC2242/orc2242/AppPrj/common" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages/ti/csl" --include_path="D:/ORC2242/ORC2242/orc2242/AppPrj/drv" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages" --display_error_number --diag_warning=225 --diag_wrap=off --preproc_with_compile --preproc_dependency="src/Uart_Init.pp" --obj_directory="src"  "../src/Uart_Init.c"
+"D:/ORC2242/ORC2242/orc2242/AppPrj/common/datatype.h", line 16: warning #303-D: typedef name has already been declared (with same type)
+"D:/ORC2242/ORC2242/orc2242/AppPrj/common/datatype.h", line 19: warning #303-D: typedef name has already been declared (with same type)
+"../src/Uart_Init.c", line 251: warning #994-D: missing return statement at end of non-void function "uartCfg"
+"../src/Uart_Init.c", line 431: warning #179-D: variable "eventFlag" was declared but never referenced
+"../src/Uart_Init.c", line 615: warning #552-D: variable "inBuf" was set but never used
+'Finished building: ../src/Uart_Init.c'
+' '
+'Building file: ../src/main.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000_7.4.4/bin/cl6x" -mv6600 --abi=eabi -g --include_path="C:/ti/ccsv5/tools/compiler/c6000_7.4.4/include" --include_path="D:/ORC2242/ORC2242/orc2242/AppPrj/common" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages/ti/csl" --include_path="D:/ORC2242/ORC2242/orc2242/AppPrj/drv" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages" --display_error_number --diag_warning=225 --diag_wrap=off --preproc_with_compile --preproc_dependency="src/main.pp" --obj_directory="src"  "../src/main.c"
+"D:/ORC2242/ORC2242/orc2242/AppPrj/common/datatype.h", line 16: warning #303-D: typedef name has already been declared (with same type)
+"D:/ORC2242/ORC2242/orc2242/AppPrj/common/datatype.h", line 19: warning #303-D: typedef name has already been declared (with same type)
+"../src/main.c", line 348: warning #179-D: variable "man" was declared but never referenced
+'Finished building: ../src/main.c'
+' '
+'Building file: ../drv/KeyStone_Navigator_init_drv.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000_7.4.4/bin/cl6x" -mv6600 --abi=eabi -g --include_path="C:/ti/ccsv5/tools/compiler/c6000_7.4.4/include" --include_path="D:/ORC2242/ORC2242/orc2242/AppPrj/common" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages/ti/csl" --include_path="D:/ORC2242/ORC2242/orc2242/AppPrj/drv" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages" --display_error_number --diag_warning=225 --diag_wrap=off --preproc_with_compile --preproc_dependency="drv/KeyStone_Navigator_init_drv.pp" --obj_directory="drv"  "../drv/KeyStone_Navigator_init_drv.c"
+'Finished building: ../drv/KeyStone_Navigator_init_drv.c'
+' '
+'Building file: ../drv/KeyStone_SRIO_Init_drv.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000_7.4.4/bin/cl6x" -mv6600 --abi=eabi -g --include_path="C:/ti/ccsv5/tools/compiler/c6000_7.4.4/include" --include_path="D:/ORC2242/ORC2242/orc2242/AppPrj/common" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages/ti/csl" --include_path="D:/ORC2242/ORC2242/orc2242/AppPrj/drv" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages" --display_error_number --diag_warning=225 --diag_wrap=off --preproc_with_compile --preproc_dependency="drv/KeyStone_SRIO_Init_drv.pp" --obj_directory="drv"  "../drv/KeyStone_SRIO_Init_drv.c"
+"../drv/KeyStone_SRIO_Init_drv.c", line 1173: warning #552-D: variable "return_sta" was set but never used
+'Finished building: ../drv/KeyStone_SRIO_Init_drv.c'
+' '
+'Building file: ../drv/KeyStone_common.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000_7.4.4/bin/cl6x" -mv6600 --abi=eabi -g --include_path="C:/ti/ccsv5/tools/compiler/c6000_7.4.4/include" --include_path="D:/ORC2242/ORC2242/orc2242/AppPrj/common" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages/ti/csl" --include_path="D:/ORC2242/ORC2242/orc2242/AppPrj/drv" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages" --display_error_number --diag_warning=225 --diag_wrap=off --preproc_with_compile --preproc_dependency="drv/KeyStone_common.pp" --obj_directory="drv"  "../drv/KeyStone_common.c"
+'Finished building: ../drv/KeyStone_common.c'
+' '
+'Building file: ../drv/Keystone_Serdes_init.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000_7.4.4/bin/cl6x" -mv6600 --abi=eabi -g --include_path="C:/ti/ccsv5/tools/compiler/c6000_7.4.4/include" --include_path="D:/ORC2242/ORC2242/orc2242/AppPrj/common" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages/ti/csl" --include_path="D:/ORC2242/ORC2242/orc2242/AppPrj/drv" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages" --display_error_number --diag_warning=225 --diag_wrap=off --preproc_with_compile --preproc_dependency="drv/Keystone_Serdes_init.pp" --obj_directory="drv"  "../drv/Keystone_Serdes_init.c"
+'Finished building: ../drv/Keystone_Serdes_init.c'
+' '
+'Building file: ../common/bootCfg_dsp667x.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000_7.4.4/bin/cl6x" -mv6600 --abi=eabi -g --include_path="C:/ti/ccsv5/tools/compiler/c6000_7.4.4/include" --include_path="D:/ORC2242/ORC2242/orc2242/AppPrj/common" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages/ti/csl" --include_path="D:/ORC2242/ORC2242/orc2242/AppPrj/drv" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages" --display_error_number --diag_warning=225 --diag_wrap=off --preproc_with_compile --preproc_dependency="common/bootCfg_dsp667x.pp" --obj_directory="common"  "../common/bootCfg_dsp667x.c"
+'Finished building: ../common/bootCfg_dsp667x.c'
+' '
+'Building file: ../common/ddr_dsp667x.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000_7.4.4/bin/cl6x" -mv6600 --abi=eabi -g --include_path="C:/ti/ccsv5/tools/compiler/c6000_7.4.4/include" --include_path="D:/ORC2242/ORC2242/orc2242/AppPrj/common" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages/ti/csl" --include_path="D:/ORC2242/ORC2242/orc2242/AppPrj/drv" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages" --display_error_number --diag_warning=225 --diag_wrap=off --preproc_with_compile --preproc_dependency="common/ddr_dsp667x.pp" --obj_directory="common"  "../common/ddr_dsp667x.c"
+"..\common\datatype.h", line 16: warning #303-D: typedef name has already been declared (with same type)
+"..\common\datatype.h", line 19: warning #303-D: typedef name has already been declared (with same type)
+'Finished building: ../common/ddr_dsp667x.c'
+' '
+'Building file: ../common/delay.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000_7.4.4/bin/cl6x" -mv6600 --abi=eabi -g --include_path="C:/ti/ccsv5/tools/compiler/c6000_7.4.4/include" --include_path="D:/ORC2242/ORC2242/orc2242/AppPrj/common" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages/ti/csl" --include_path="D:/ORC2242/ORC2242/orc2242/AppPrj/drv" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages" --display_error_number --diag_warning=225 --diag_wrap=off --preproc_with_compile --preproc_dependency="common/delay.pp" --obj_directory="common"  "../common/delay.c"
+'Finished building: ../common/delay.c'
+' '
+'Building file: ../common/emif_dsp667x.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000_7.4.4/bin/cl6x" -mv6600 --abi=eabi -g --include_path="C:/ti/ccsv5/tools/compiler/c6000_7.4.4/include" --include_path="D:/ORC2242/ORC2242/orc2242/AppPrj/common" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages/ti/csl" --include_path="D:/ORC2242/ORC2242/orc2242/AppPrj/drv" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages" --display_error_number --diag_warning=225 --diag_wrap=off --preproc_with_compile --preproc_dependency="common/emif_dsp667x.pp" --obj_directory="common"  "../common/emif_dsp667x.c"
+"..\common\datatype.h", line 16: warning #303-D: typedef name has already been declared (with same type)
+"..\common\datatype.h", line 19: warning #303-D: typedef name has already been declared (with same type)
+'Finished building: ../common/emif_dsp667x.c'
+' '
+'Building file: ../common/pll_dsp667x.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000_7.4.4/bin/cl6x" -mv6600 --abi=eabi -g --include_path="C:/ti/ccsv5/tools/compiler/c6000_7.4.4/include" --include_path="D:/ORC2242/ORC2242/orc2242/AppPrj/common" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages/ti/csl" --include_path="D:/ORC2242/ORC2242/orc2242/AppPrj/drv" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages" --display_error_number --diag_warning=225 --diag_wrap=off --preproc_with_compile --preproc_dependency="common/pll_dsp667x.pp" --obj_directory="common"  "../common/pll_dsp667x.c"
+"..\common\datatype.h", line 16: warning #303-D: typedef name has already been declared (with same type)
+"..\common\datatype.h", line 19: warning #303-D: typedef name has already been declared (with same type)
+"../common/pll_dsp667x.c", line 109: warning #225-D: function declared implicitly
+'Finished building: ../common/pll_dsp667x.c'
+' '
+'Building file: ../common/psc_dsp667x.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000_7.4.4/bin/cl6x" -mv6600 --abi=eabi -g --include_path="C:/ti/ccsv5/tools/compiler/c6000_7.4.4/include" --include_path="D:/ORC2242/ORC2242/orc2242/AppPrj/common" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages/ti/csl" --include_path="D:/ORC2242/ORC2242/orc2242/AppPrj/drv" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages" --display_error_number --diag_warning=225 --diag_wrap=off --preproc_with_compile --preproc_dependency="common/psc_dsp667x.pp" --obj_directory="common"  "../common/psc_dsp667x.c"
+'Finished building: ../common/psc_dsp667x.c'
+' '
+'Building target: AppPrj.out'
+'Invoking: C6000 Linker'
+"C:/ti/ccsv5/tools/compiler/c6000_7.4.4/bin/cl6x" -mv6600 --abi=eabi -g --display_error_number --diag_warning=225 --diag_wrap=off -z -m"AppPrj.map" -i"C:/ti/ccsv5/tools/compiler/c6000_7.4.4/lib" -i"C:/ti/ccsv5/tools/compiler/c6000_7.4.4/include" --reread_libs --warn_sections --display_error_number --diag_wrap=off --xml_link_info="AppPrj_linkInfo.xml" --rom_model -o "AppPrj.out"  "./common/psc_dsp667x.obj" "./common/pll_dsp667x.obj" "./common/emif_dsp667x.obj" "./common/delay.obj" "./common/ddr_dsp667x.obj" "./common/bootCfg_dsp667x.obj" "./drv/Keystone_Serdes_init.obj" "./drv/KeyStone_common.obj" "./drv/KeyStone_SRIO_Init_drv.obj" "./drv/KeyStone_Navigator_init_drv.obj" "./src/main.obj" "./src/Uart_Init.obj" "./src/SRIO_vectors.obj" "./src/SRIO_PktDMA_Init.obj" "./src/SRIO_Interrupts.obj" "./src/Gpio_Init.obj" "./src/Bsp.obj" "../KeyStone.cmd" -l"libc.a" 
+<Linking>
+'Finished building target: AppPrj.out'
+' '
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project AppPrj ****
+
+"C:\\ti\\ccsv5\\utils\\bin\\gmake" -k all 
+gmake: Nothing to be done for `all'.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project AppPrj ****
+
+"C:\\ti\\ccsv5\\utils\\bin\\gmake" -k all 
+'Building file: ../src/main.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000_7.4.4/bin/cl6x" -mv6600 --abi=eabi -g --include_path="C:/ti/ccsv5/tools/compiler/c6000_7.4.4/include" --include_path="D:/ORC2242/ORC2242/orc2242/AppPrj/common" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages/ti/csl" --include_path="D:/ORC2242/ORC2242/orc2242/AppPrj/drv" --include_path="C:/ti/pdk_C6678_1_1_2_6/packages" --display_error_number --diag_warning=225 --diag_wrap=off --preproc_with_compile --preproc_dependency="src/main.pp" --obj_directory="src"  "../src/main.c"
+"D:/ORC2242/ORC2242/orc2242/AppPrj/common/datatype.h", line 16: warning #303-D: typedef name has already been declared (with same type)
+"D:/ORC2242/ORC2242/orc2242/AppPrj/common/datatype.h", line 19: warning #303-D: typedef name has already been declared (with same type)
+'Finished building: ../src/main.c'
+' '
+'Building target: AppPrj.out'
+'Invoking: C6000 Linker'
+"C:/ti/ccsv5/tools/compiler/c6000_7.4.4/bin/cl6x" -mv6600 --abi=eabi -g --display_error_number --diag_warning=225 --diag_wrap=off -z -m"AppPrj.map" -i"C:/ti/ccsv5/tools/compiler/c6000_7.4.4/lib" -i"C:/ti/ccsv5/tools/compiler/c6000_7.4.4/include" --reread_libs --warn_sections --display_error_number --diag_wrap=off --xml_link_info="AppPrj_linkInfo.xml" --rom_model -o "AppPrj.out"  "./common/psc_dsp667x.obj" "./common/pll_dsp667x.obj" "./common/emif_dsp667x.obj" "./common/delay.obj" "./common/ddr_dsp667x.obj" "./common/bootCfg_dsp667x.obj" "./drv/Keystone_Serdes_init.obj" "./drv/KeyStone_common.obj" "./drv/KeyStone_SRIO_Init_drv.obj" "./drv/KeyStone_Navigator_init_drv.obj" "./src/main.obj" "./src/Uart_Init.obj" "./src/SRIO_vectors.obj" "./src/SRIO_PktDMA_Init.obj" "./src/SRIO_Interrupts.obj" "./src/Gpio_Init.obj" "./src/Bsp.obj" "../KeyStone.cmd" -l"libc.a" 
+<Linking>
+'Finished building target: AppPrj.out'
+' '
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project AppPrj ****
+
+"C:\\ti\\ccsv5\\utils\\bin\\gmake" -k all 
+gmake: Nothing to be done for `all'.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project AppPrj ****
+
+"C:\\ti\\ccsv5\\utils\\bin\\gmake" -k all 
+gmake: Nothing to be done for `all'.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project AppPrj ****
+
+"C:\\ti\\ccsv5\\utils\\bin\\gmake" -k all 
+gmake: Nothing to be done for `all'.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project AppPrj ****
+
+"C:\\ti\\ccsv5\\utils\\bin\\gmake" -k all 
+gmake: Nothing to be done for `all'.
+
+**** Build Finished ****

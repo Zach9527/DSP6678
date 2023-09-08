@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">&#x0A;<refactoring comment="Rename resource &apos;bootloader/main.c&apos; to &apos;bootloader.c&apos;" description="Rename resource &apos;main.c&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="main.c" name="bootloader.c" stamp="1672749084195" updateReferences="true"/>&#x0A;<refactoring comment="Rename resource &apos;bootloader/dvr&apos; to &apos;drv&apos;" description="Rename resource &apos;dvr&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="dvr" name="drv" stamp="1672749865896" updateReferences="true"/>
+</session>

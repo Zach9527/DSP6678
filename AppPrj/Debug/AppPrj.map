@@ -1,0 +1,1065 @@
+******************************************************************************
+               TMS320C6x Linker PC v7.4.4                      
+******************************************************************************
+>> Linked Tue Feb 14 16:22:31 2023
+
+OUTPUT FILE NAME:   <AppPrj.out>
+ENTRY POINT SYMBOL: "_c_int00"  address: 10815f20
+
+
+MEMORY CONFIGURATION
+
+         name            origin    length      used     unused   attr    fill
+----------------------  --------  ---------  --------  --------  ----  --------
+  VECTORS               00800000   00000200  00000200  00000000  RWIX
+  SL2                   0c01a800   00300000  00000800  002ff800  RWIX
+  LL2_RW_DATA           10803000   0007d000  00018d50  000642b0  RWIX
+  DDR3_CODE             80000000   00600000  00000000  00600000  RWIX
+  DDR3_RW_DATA          80600000   00a00000  00000400  009ffc00  RWIX
+
+
+SEGMENT ALLOCATION MAP
+
+run origin  load origin   length   init length attrs members
+----------  ----------- ---------- ----------- ----- -------
+00800000    00800000    00000200   00000200    r-x
+  00800000    00800000    00000200   00000200    r-x vecs
+0c01a800    0c01a800    00000800   00000000    rw-
+  0c01a800    0c01a800    00000800   00000000    rw- .sysmem
+10803000    10803000    000157f0   000157f0    r-x
+  10803000    10803000    00013700   00013700    r-x .text
+  10816700    10816700    000020f0   000020f0    r-- .const
+108187f0    108187f0    00002608   00001608    rw-
+  108187f0    108187f0    00001608   00001608    rw- .far
+  10819df8    10819df8    00001000   00000000    rw- .stack
+1081adf8    1081adf8    00000ad8   000009b4    rw-
+  1081adf8    1081adf8    00000880   00000880    rw- .fardata
+  1081b678    1081b678    00000134   00000134    rw- .neardata
+  1081b7ac    1081b7ac    00000004   00000000    rw- .bss
+  1081b7b0    1081b7b0    00000120   00000000    rw- .cio
+1081b8d0    1081b8d0    00000480   00000480    r--
+  1081b8d0    1081b8d0    00000030   00000030    r-- .switch
+  1081b900    1081b900    00000450   00000450    r-- .cinit
+80600000    80600000    00000400   00000000    rw-
+  80600000    80600000    00000400   00000000    rw- .UART_DATA_BUF
+
+
+SECTION ALLOCATION MAP
+
+ output                                  attributes/
+section   page    origin      length       input sections
+--------  ----  ----------  ----------   ----------------
+vecs       0    00800000    00000200     
+                  00800000    00000200     SRIO_vectors.obj (vecs)
+
+.sysmem    0    0c01a800    00000800     UNINITIALIZED
+                  0c01a800    00000008     rts6600_elf.lib : memory.obj (.sysmem)
+                  0c01a808    000007f8     --HOLE--
+
+.text      0    10803000    00013700     
+                  10803000    00005c20     KeyStone_common.obj (.text)
+                  10808c20    00002980     KeyStone_SRIO_Init_drv.obj (.text)
+                  1080b5a0    00000ea0     Bsp.obj (.text)
+                  1080c440    00000e40     main.obj (.text)
+                  1080d280    00000b00     Uart_Init.obj (.text)
+                  1080dd80    00000a00     Keystone_Serdes_init.obj (.text)
+                  1080e780    00000600     KeyStone_common.obj (.text:retain)
+                  1080ed80    000005c0     rts6600_elf.lib : divd.obj (.text:__c6xabi_divd)
+                  1080f340    000005c0                     : _printfi.obj (.text:_getarg_diouxp)
+                  1080f900    000005a0     SRIO_Interrupts.obj (.text:retain)
+                  1080fea0    00000460     rts6600_elf.lib : _printfi.obj (.text:_printfi)
+                  10810300    00000460                     : _printfi.obj (.text:_setfield)
+                  10810760    00000440     KeyStone_common.obj (.text:Core_MPAX)
+                  10810ba0    000003a0     rts6600_elf.lib : fputs.obj (.text:fputs)
+                  10810f40    00000320                     : _printfi.obj (.text:_pproc_fge)
+                  10811260    000002e0                     : _printfi.obj (.text:_pproc_fwp)
+                  10811540    000002a0                     : _printfi.obj (.text:fcvt)
+                  108117e0    00000280                     : divf.obj (.text:__c6xabi_divf)
+                  10811a60    00000280                     : _printfi.obj (.text:ecvt)
+                  10811ce0    00000280                     : memory.obj (.text:free)
+                  10811f60    00000260     Uart_Init.obj (.text:retain)
+                  108121c0    00000240     SRIO_Interrupts.obj (.text)
+                  10812400    00000240     rts6600_elf.lib : imath64.obj (.text:__c6xabi_divull)
+                  10812640    00000240                     : _printfi.obj (.text:_pconv_e)
+                  10812880    00000240                     : _printfi.obj (.text:_pproc_diouxp)
+                  10812ac0    00000220     Gpio_Init.obj (.text)
+                  10812ce0    00000220     rts6600_elf.lib : _printfi.obj (.text:_pproc_str)
+                  10812f00    00000220                     : fputc.obj (.text:fputc)
+                  10813120    00000200                     : _printfi.obj (.text:_pconv_g)
+                  10813320    00000200     Gpio_Init.obj (.text:retain)
+                  10813520    00000200     rts6600_elf.lib : setvbuf.obj (.text:setvbuf)
+                  10813720    000001c0                     : _printfi.obj (.text:_mcpy)
+                  108138e0    000001a0                     : trgdrv.obj (.text:HOSTrename)
+                  10813a80    000001a0                     : imath40.obj (.text:__c6xabi_divul)
+                  10813c20    00000180                     : copy_decompress_rle.obj (.text:__TI_decompress_rle_core)
+                  10813da0    00000180                     : memory.obj (.text:malloc)
+                  10813f20    00000140                     : _printfi.obj (.text:_pproc_fflags)
+                  10814060    00000140                     : lowlev.obj (.text:getdevice)
+                  108141a0    00000120                     : fclose.obj (.text:_closefile)
+                  108142c0    00000120                     : _printfi.obj (.text:_ltostr)
+                  108143e0    00000120                     : fseek.obj (.text:fseek)
+                  10814500    00000100                     : trgdrv.obj (.text:HOSTlseek)
+                  10814600    00000100                     : autoinit.obj (.text:_auto_init_elf)
+                  10814700    00000100                     : _io_perm.obj (.text:_wrt_ok)
+                  10814800    00000100                     : cpy_tbl.obj (.text:copy_in)
+                  10814900    000000e0                     : trgdrv.obj (.text:HOSTopen)
+                  108149e0    000000e0                     : _printfi.obj (.text:_div)
+                  10814ac0    000000e0                     : atoi.obj (.text:atoi)
+                  10814ba0    000000e0                     : lowlev.obj (.text:close)
+                  10814c80    000000e0                     : copy_zero_init.obj (.text:decompress:ZI:__TI_zero_init)
+                  10814d60    000000e0                     : ltoa.obj (.text:ltoa)
+                  10814e40    000000e0                     : memset.obj (.text:memset)
+                  10814f20    000000e0                     : printf.obj (.text:printf)
+                  10815000    000000c0                     : trgdrv.obj (.text:HOSTread)
+                  108150c0    000000c0                     : trgdrv.obj (.text:HOSTunlink)
+                  10815180    000000c0                     : trgdrv.obj (.text:HOSTwrite)
+                  10815240    000000c0                     : divu.obj (.text:__divu)
+                  10815300    000000c0                     : remi.obj (.text:__remi)
+                  108153c0    000000c0                     : fflush.obj (.text:_doflush)
+                  10815480    000000c0                     : exit.obj (.text:exit)
+                  10815540    000000c0                     : tls.obj (.text:tls:init:__TI_tls_init)
+                  10815600    000000a0                     : trgdrv.obj (.text:HOSTclose)
+                  108156a0    000000a0                     : remu.obj (.text:__remu)
+                  10815740    000000a0                     : fopen.obj (.text:_cleanup)
+                  108157e0    000000a0                     : _printfi.obj (.text:_ecpy)
+                  10815880    000000a0                     : _printfi.obj (.text:_fcpy)
+                  10815920    000000a0                     : memory.obj (.text:_minit)
+                  108159c0    000000a0                     : _printfi.obj (.text:_pconv_f)
+                  10815a60    000000a0                     : lowlev.obj (.text:finddevice)
+                  10815b00    000000a0                     : lowlev.obj (.text:lseek)
+                  10815ba0    000000a0                     : memcpy64.obj (.text:memcpy)
+                  10815c40    000000a0                     : memory.obj (.text:minsert)
+                  10815ce0    000000a0                     : memory.obj (.text:mremove)
+                  10815d80    000000a0                     : lowlev.obj (.text:write)
+                  10815e20    00000080                     : fixfu.obj (.text:__c6xabi_fixfu)
+                  10815ea0    00000080                     : llshift.obj (.text:__c6xabi_llshl)
+                  10815f20    00000080                     : boot.obj (.text:_c_int00)
+                  10815fa0    00000080                     : trgmsg.obj (.text:readmsg)
+                  10816020    00000080                     : lowlev.obj (.text:unlink)
+                  108160a0    00000060                     : cpp_init.obj (.text:__TI_cpp_init)
+                  10816100    00000060                     : frcmpyd_div.obj (.text:__c6xabi_frcmpyd_div)
+                  10816160    00000060                     : llshift.obj (.text:__c6xabi_llshru)
+                  108161c0    00000060                     : imath64.obj (.text:_subcull)
+                  10816220    00000060                     : memccpy.obj (.text:memccpy)
+                  10816280    00000060                     : memcmp.obj (.text:memcmp)
+                  108162e0    00000060                     : strncmp.obj (.text:strncmp)
+                  10816340    00000060                     : vsprintf.obj (.text:vsprintf)
+                  108163a0    00000060                     : trgmsg.obj (.text:writemsg)
+                  10816400    00000040     SRIO_vectors.obj (.text)
+                  10816440    00000040     rts6600_elf.lib : isinf.obj (.text:__c6xabi_isinf)
+                  10816480    00000040                     : _printfi.obj (.text:__c6xabi_isnan)
+                  108164c0    00000040                     : strasg.obj (.text:__strasgi_64plus)
+                  10816500    00000040                     : args_main.obj (.text:_args_main)
+                  10816540    00000040                     : vsprintf.obj (.text:_outs)
+                  10816580    00000040                     : fputs.obj (.text:puts)
+                  108165c0    00000040                     : strlen.obj (.text:strlen)
+                  10816600    00000020                     : negll.obj (.text:__c6xabi_negll)
+                  10816620    00000020                     : _lock.obj (.text:_nop)
+                  10816640    00000020                     : printf.obj (.text:_outc)
+                  10816660    00000020                     : vsprintf.obj (.text:_outc)
+                  10816680    00000020                     : printf.obj (.text:_outs)
+                  108166a0    00000020                     : exit.obj (.text:abort)
+                  108166c0    00000020                     : copy_decompress_none.obj (.text:decompress:none:__TI_decompress_none)
+                  108166e0    00000020                     : copy_decompress_rle.obj (.text:decompress:rle24:__TI_decompress_rle24)
+
+.const     0    10816700    000020f0     
+                  10816700    00001a2c     KeyStone_common.obj (.const:.string)
+                  1081812c    00000324     main.obj (.const:.string)
+                  10818450    00000138     SRIO_Interrupts.obj (.const:.string)
+                  10818588    00000101     rts6600_elf.lib : ctype.obj (.const:.string:_ctypes_)
+                  10818689    00000002                     : fputs.obj (.const:.string)
+                  1081868b    00000001     --HOLE-- [fill = 0]
+                  1081868c    00000074     Bsp.obj (.const:.string)
+                  10818700    00000074     Gpio_Init.obj (.const:.string)
+                  10818774    00000024     KeyStone_SRIO_Init_drv.obj (.const:.string)
+                  10818798    00000023     rts6600_elf.lib : _printfi.obj (.const:.string)
+                  108187bb    00000001     --HOLE-- [fill = 0]
+                  108187bc    00000020     Uart_Init.obj (.const:.string)
+                  108187dc    00000004     --HOLE-- [fill = 0]
+                  108187e0    00000010     KeyStone_SRIO_Init_drv.obj (.const:$P$T0$1)
+
+.far       0    108187f0    00001608     
+                  108187f0    00000ec0     Bsp.obj (.far) [fill = 0]
+                  108196b0    00000410     Uart_Init.obj (.far) [fill = 0]
+                  10819ac0    00000140     rts6600_elf.lib : defs.obj (.far) [fill = 0]
+                  10819c00    000000e0     main.obj (.far) [fill = 0]
+                  10819ce0    00000080     SRIO_PktDMA_Init.obj (.far) [fill = 0]
+                  10819d60    0000006c     KeyStone_common.obj (.far) [fill = 0]
+                  10819dcc    00000014     SRIO_Interrupts.obj (.far) [fill = 0]
+                  10819de0    00000010     KeyStone_common.obj (.far:Core_MPAX)
+                  10819df0    00000008     rts6600_elf.lib : trgdrv.obj (.far) [fill = 0]
+
+.stack     0    10819df8    00001000     UNINITIALIZED
+                  10819df8    00000008     rts6600_elf.lib : boot.obj (.stack)
+                  10819e00    00000ff8     --HOLE--
+
+.fardata   0    1081adf8    00000880     
+                  1081adf8    000001e0     rts6600_elf.lib : defs.obj (.fardata:_ftable)
+                  1081afd8    0000012c     main.obj (.fardata:cmp)
+                  1081b104    00000004     rts6600_elf.lib : defs.obj (.fardata)
+                  1081b108    0000012c     main.obj (.fardata:test)
+                  1081b234    00000004     --HOLE--
+                  1081b238    000000a0     rts6600_elf.lib : lowlev.obj (.fardata:_stream)
+                  1081b2d8    00000078                     : lowlev.obj (.fardata:_device)
+                  1081b350    00000048     KeyStone_SRIO_Init_drv.obj (.fardata:LSU_state_index_table)
+                  1081b398    00000041     Uart_Init.obj (.fardata)
+                  1081b3d9    00000007     --HOLE--
+                  1081b3e0    00000040     KeyStone_common.obj (.fardata:gstruMpuAddrRange)
+                  1081b420    00000028     KeyStone_common.obj (.fardata:gpEDMA_TC_regs)
+                  1081b448    00000028     SRIO_Interrupts.obj (.fardata:interrupt_map)
+                  1081b470    00000024     KeyStone_common.obj (.fardata:gpTimerRegs)
+                  1081b494    00000004     --HOLE--
+                  1081b498    00000024     KeyStone_common.obj (.fardata:input_clk_str)
+                  1081b4bc    00000004     --HOLE--
+                  1081b4c0    00000024     KeyStone_common.obj (.fardata:internal_exception_str)
+                  1081b4e4    00000004     --HOLE--
+                  1081b4e8    00000020     KeyStone_common.obj (.fardata:boot_mode_str)
+                  1081b508    00000020     KeyStone_common.obj (.fardata:bus_err_stat_str)
+                  1081b528    00000020     KeyStone_common.obj (.fardata:gCIC_EXC_EN_MASK)
+                  1081b548    00000020     KeyStone_common.obj (.fardata:gpMPU_regs)
+                  1081b568    00000020     main.obj (.fardata:path_str)
+                  1081b588    00000018     KeyStone_common.obj (.fardata:Peri_MPU_err_type_str)
+                  1081b5a0    00000018     main.obj (.fardata:type_str)
+                  1081b5b8    00000014     KeyStone_common.obj (.fardata:device_type_str)
+                  1081b5cc    00000004     --HOLE--
+                  1081b5d0    00000014     SRIO_Interrupts.obj (.fardata:doorbell_msg_str)
+                  1081b5e4    00000004     --HOLE--
+                  1081b5e8    00000010     Uart_Init.obj (.fardata:cmdFunTab)
+                  1081b5f8    0000000c     main.obj (.fardata:dsp0_device_ID_routing_config)
+                  1081b604    00000004     --HOLE--
+                  1081b608    0000000c     KeyStone_common.obj (.fardata:gpEDMA_CC_regs)
+                  1081b614    0000000c     rts6600_elf.lib : exit.obj (.fardata)
+                  1081b620    0000000c                     : memory.obj (.fardata)
+                  1081b62c    00000004     --HOLE--
+                  1081b630    0000000a     main.obj (.fardata:err1)
+                  1081b63a    00000006     --HOLE--
+                  1081b640    0000000a     main.obj (.fardata:err)
+                  1081b64a    00000006     --HOLE--
+                  1081b650    0000000a     main.obj (.fardata:pbuf)
+                  1081b65a    00000006     --HOLE--
+                  1081b660    00000008     KeyStone_common.obj (.fardata:Ns_str)
+                  1081b668    00000008     KeyStone_common.obj (.fardata:endian_str)
+                  1081b670    00000008     rts6600_elf.lib : _lock.obj (.fardata)
+
+.neardata 
+*          0    1081b678    00000134     
+                  1081b678    000000bc     KeyStone_common.obj (.neardata)
+                  1081b734    00000064     KeyStone_Navigator_init_drv.obj (.neardata)
+                  1081b798    0000000c     main.obj (.neardata)
+                  1081b7a4    00000004     Gpio_Init.obj (.neardata)
+                  1081b7a8    00000004     KeyStone_SRIO_Init_drv.obj (.neardata)
+
+.rodata    0    1081b7ac    00000000     UNINITIALIZED
+
+.bss       0    1081b7ac    00000004     UNINITIALIZED
+                  1081b7ac    00000004     KeyStone_SRIO_Init_drv.obj (.bss)
+
+.cio       0    1081b7b0    00000120     UNINITIALIZED
+                  1081b7b0    00000120     rts6600_elf.lib : trgmsg.obj (.cio)
+
+.switch    0    1081b8d0    00000030     
+                  1081b8d0    00000018     Uart_Init.obj (.switch:dspUartInit)
+                  1081b8e8    00000018     Uart_Init.obj (.switch:uartCfg)
+
+.cinit     0    1081b900    00000450     
+                  1081b900    000002c3     (.cinit..fardata.load) [load image, compression = rle]
+                  1081bbc3    00000001     --HOLE-- [fill = 0]
+                  1081bbc4    0000012c     (.cinit..neardata.load) [load image, compression = rle]
+                  1081bcf0    0000001a     (.cinit..far.load) [load image, compression = rle]
+                  1081bd0a    00000002     --HOLE-- [fill = 0]
+                  1081bd0c    0000000c     (__TI_handler_table)
+                  1081bd18    00000008     (.cinit..UART_DATA_BUF.load) [load image, compression = zero_init]
+                  1081bd20    00000008     (.cinit..bss.load) [load image, compression = zero_init]
+                  1081bd28    00000028     (__TI_cinit_table)
+
+.UART_DATA_BUF 
+*          0    80600000    00000400     UNINITIALIZED
+                  80600000    00000400     Uart_Init.obj (.UART_DATA_BUF)
+
+
+LINKER GENERATED COPY TABLES
+
+__TI_cinit_table @ 1081bd28 records: 5, size/record: 8, table size: 40
+	.fardata: load addr=1081b900, load size=000002c3 bytes, run addr=1081adf8, run size=00000880 bytes, compression=rle
+	.neardata: load addr=1081bbc4, load size=0000012c bytes, run addr=1081b678, run size=00000134 bytes, compression=rle
+	.far: load addr=1081bcf0, load size=0000001a bytes, run addr=108187f0, run size=00001608 bytes, compression=rle
+	.UART_DATA_BUF: load addr=1081bd18, load size=00000008 bytes, run addr=80600000, run size=00000400 bytes, compression=zero_init
+	.bss: load addr=1081bd20, load size=00000008 bytes, run addr=1081b7ac, run size=00000004 bytes, compression=zero_init
+
+
+LINKER GENERATED HANDLER TABLE
+
+__TI_handler_table @ 1081bd0c records: 3, size/record: 4, table size: 12
+	index: 0, handler: __TI_decompress_rle24
+	index: 1, handler: __TI_decompress_none
+	index: 2, handler: __TI_zero_init
+
+
+GLOBAL SYMBOLS: SORTED ALPHABETICALLY BY Name 
+
+address    name
+--------   ----
+10807d08   Bus_error_handler
+108166a0   C$$EXIT
+108163f8   C$$IO$$
+10808888   CPU_interrupt_enable
+108087e0   CPU_interrupt_init
+1080dbe4   DebugSerialDatIdle
+108058b8   EDMA_CC_error_handler
+10805ac4   EDMA_TC_error_handler
+10804a00   EDMA_TC_priority_cfg
+10804978   EDMA_channel_TC_cfg
+10805240   EDMA_copy
+10805bf0   EDMA_error_handler
+1080502c   EDMA_event_disable
+10804fc0   EDMA_event_enable
+10805458   EDMA_fill
+10804a68   EDMA_init
+10805108   EDMA_interrupt_disable
+1080509c   EDMA_interrupt_enable
+10805178   EDMA_wait
+108087b0   EXC_NMI
+108086f0   EXC_internal
+108087c8   EXC_swgen
+1080e780   Exception_service_routine
+10813320   GPIO_ISR
+10812ac0   GPIO_Interrupts_Init
+10812b38   GPIO_init
+10812c30   GPIO_loopback_test
+1080b64c   GetFifoNum
+10815600   HOSTclose
+10814500   HOSTlseek
+10814900   HOSTopen
+10815000   HOSTread
+108138e0   HOSTrename
+108150c0   HOSTunlink
+10815180   HOSTwrite
+10805820   IDMA_copy
+108057f4   IDMA_wait
+1080caf4   InitDataBuffer
+10807de4   KeyStone_CIC_EXC_handler
+108076ec   KeyStone_CIC_exception_events_mapping
+10806104   KeyStone_CorePac_AID_map
+10804068   KeyStone_DDR_PLL_init
+10808228   KeyStone_EXC_external
+10807b24   KeyStone_Exception_cfg
+1080e240   KeyStone_HyperLink_Serdes_init
+108108f0   KeyStone_MPAX_seg_setup
+10806910   KeyStone_MPU_MPPA_modify
+10806a08   KeyStone_MPU_interrupt_enable
+10806ab0   KeyStone_MPU_interrupts_enable
+1080668c   KeyStone_MPU_range_setup
+1080670c   KeyStone_MPU_setup
+108063c8   KeyStone_MSMC_MP_interrupt_en
+10806548   KeyStone_MSMC_protection_exception_handler
+10803fd8   KeyStone_PASS_PLL_init
+10803e2c   KeyStone_PLL_init
+1080618c   KeyStone_PrivID_Remap
+108062e8   KeyStone_SES_MPAX_setup
+10806d74   KeyStone_SL2_EDC_enable
+10807414   KeyStone_SL2_EDC_handler
+10806e34   KeyStone_SL2_EDC_interrupt_en
+10806208   KeyStone_SMS_MPAX_setup
+1080b368   KeyStone_SRIO_Build_Type11_Msg_Desc
+1080b4b4   KeyStone_SRIO_Build_Type9_Msg_Desc
+10809490   KeyStone_SRIO_CSR_CAR_Config
+10809ea4   KeyStone_SRIO_Datastreaming_init
+1080af50   KeyStone_SRIO_DirectIO
+1080b0ec   KeyStone_SRIO_DoorBell
+108097d4   KeyStone_SRIO_Error_Capture_Enable
+1080a628   KeyStone_SRIO_Flow_Control
+1080a064   KeyStone_SRIO_Garbage_Queue_Cfg
+10808e30   KeyStone_SRIO_GlobalEnable
+1080a754   KeyStone_SRIO_Init
+1080a338   KeyStone_SRIO_Interrupt_init
+1080abc4   KeyStone_SRIO_LSU_transfer
+1080aff8   KeyStone_SRIO_Maintenance
+1080a1cc   KeyStone_SRIO_MulticastID_Cfg
+1080a5c4   KeyStone_SRIO_Prioirity_Permission_Setup
+1080a254   KeyStone_SRIO_RxMode_Setup
+1080dfa4   KeyStone_SRIO_Serdes_init
+10809f30   KeyStone_SRIO_TX_Queue_Cfg
+10809234   KeyStone_SRIO_Timeout_Config
+10809004   KeyStone_SRIO_disable_all_blocks
+10808e78   KeyStone_SRIO_enable_blocks
+1080aef0   KeyStone_SRIO_get_LSU_completion_context_code
+1080a310   KeyStone_SRIO_little_endian_swap
+1080b184   KeyStone_SRIO_match_ACK_ID
+1080a0d4   KeyStone_SRIO_packet_forwarding_Cfg
+108091e8   KeyStone_SRIO_set_1x2x4x_Path
+10809a20   KeyStone_SRIO_set_device_ID
+108090a0   KeyStone_SRIO_soft_reset
+1080ae6c   KeyStone_SRIO_wait_LSU_completion
+1080dda8   KeyStone_Serdes_PLL_config
+1080e6f8   KeyStone_Serdes_disable
+1080db68   KeyStone_UART_Interrupts_Init
+10810a94   KeyStone_XMC_MPAX_setup
+10808bc0   KeyStone_common_CPU_init
+10808b84   KeyStone_common_device_init
+108048d8   KeyStone_disable_PSC_Power_Domain
+1080482c   KeyStone_disable_PSC_module
+108046ec   KeyStone_enable_PSC_module
+108089b0   KeyStone_get_device_info
+108088c8   KeyStone_get_device_speed_grade
+108039a4   KeyStone_main_PLL_init
+10809b54   KeyStone_map_SRIO_RX_message
+10806c90   KeyStone_peripherals_MPU_excepiton_handler
+10806b94   KeyStone_peripherals_MPU_fault_status
+1080e4e0   Keystone_SGMII_Serdes_init
+1080c1e4   Keystone_SRIO_DirectIO
+10805e30   L1D_memory_protection_cfg
+10807034   L1P_EDC_setup
+108072f0   L1P_ED_handler
+10805da0   L1P_memory_protection_cfg
+10805cf8   L1_MPPA_setup
+10805ec4   L1_cache_protection
+1081b720   LL2_EDC_DMA_err_str
+1081b724   LL2_EDC_L1D_err_str
+1081b728   LL2_EDC_L1P_err_str
+108070b8   LL2_EDC_handler
+10806f50   LL2_EDC_scrub
+10806e8c   LL2_EDC_setup
+1081b71c   LL2_EDC_victim_err_str
+10805ed4   LL2_MPPA_setup
+10805f70   LL2_Memory_Protection_cfg
+1081b350   LSU_state_index_table
+1080eb30   Nested_Exception_service_routine
+1081b660   Ns_str
+1081b588   Peri_MPU_err_type_str
+10818810   RS422_RECV_FIFO
+10804298   Reset_Timer
+1080be34   Rs422Recv
+108191d0   SPI_RECV_FIFO
+1080f900   SRIO_Doorbell_ISR
+1081238c   SRIO_Interrupts_Init
+1080fbc8   SRIO_Message_ISR
+108046a8   Service_Watchdog
+1080bf30   SpiRecv
+1080c030   Spi_Rs422Isr
+10806640   TN_MPU5_constant
+10804160   TSC_delay_ms
+108041f8   TSC_delay_us
+1080414c   TSC_init
+108042e8   Timer64_Init
+1080cb34   VerifyData
+1081b7b0   __CIOBUF_
+1081bd28   __TI_CINIT_Base
+1081bd50   __TI_CINIT_Limit
+1081bd0c   __TI_Handler_Table_Base
+1081bd18   __TI_Handler_Table_Limit
+UNDEFED    __TI_INITARRAY_Base
+UNDEFED    __TI_INITARRAY_Limit
+1081adf8   __TI_STACK_END
+00001000   __TI_STACK_SIZE
+1081b678   __TI_STATIC_BASE
+00000800   __TI_SYSMEM_SIZE
+UNDEFED    __TI_TLS_INIT_Base
+UNDEFED    __TI_TLS_INIT_Limit
+00000001   __TI_args_main
+108160a0   __TI_cpp_init
+108166c0   __TI_decompress_none
+108166e0   __TI_decompress_rle24
+1081b61c   __TI_enable_exit_profile_output
+ffffffff   __TI_pprof_out_hndl
+ffffffff   __TI_prof_data_size
+ffffffff   __TI_prof_data_start
+10815540   __TI_tls_init
+10814c80   __TI_zero_init
+ffffffff   __binit__
+1080ed80   __c6xabi_divd
+108117e0   __c6xabi_divf
+10815240   __c6xabi_divu
+10813a80   __c6xabi_divul
+10812400   __c6xabi_divull
+10815e20   __c6xabi_fixfu
+10816100   __c6xabi_frcmpyd_div
+10816440   __c6xabi_isinf
+10815ea0   __c6xabi_llshl
+10816160   __c6xabi_llshru
+10816600   __c6xabi_negll
+10815300   __c6xabi_remi
+108156a0   __c6xabi_remu
+108164c0   __c6xabi_strasgi_64plus
+ffffffff   __c_args__
+10815240   __divu
+10815300   __remi
+108156a0   __remu
+108164c0   __strasgi_64plus
+10816500   _args_main
+10814600   _auto_init_elf
+10815f20   _c_int00
+10815740   _cleanup
+1081b614   _cleanup_ptr
+108141a0   _closefile
+10818588   _ctypes_
+108153c0   _doflush
+1081b618   _dtors_ptr
+1081b104   _ft_end
+1081adf8   _ftable
+1081b670   _lock
+10815920   _minit
+10816620   _nop
+1080fea0   _printfi
+10819df8   _stack
+108161c0   _subcull
+0c01a800   _sys_memory
+10819ac0   _tmpnams
+1081b674   _unlock
+10814700   _wrt_ok
+108166a0   abort
+10814ac0   atoi
+1080c294   big2little
+ffffffff   binit
+1081b4e8   boot_mode_str
+1081b508   bus_err_stat_str
+108040f4   calc_cycle_measure_overhead
+10812b80   check_GPIO
+1080cee4   checksum
+10814ba0   close
+1081afd8   cmp
+10814800   copy_in
+1081b714   cycle_measure_overhead
+1081b5b8   device_type_str
+1081b5d0   doorbell_msg_str
+1081b5f8   dsp0_device_ID_routing_config
+1080d6e0   dspUartInit
+10811f60   dspUartIsr
+1080d984   dspUartRece
+1080d904   dspUartSend
+1081b668   endian_str
+1081b640   err
+1081b630   err1
+10819d60   exception_record
+10815480   exit
+1080d4f4   fifoCheck
+1080d2e0   fifoOpen
+1080d410   fifoRead
+1080d330   fifoWrite
+1080bbf4   fpgaSpiInit
+1080bc44   fpgaSpiRead
+1080bd08   fpgaSpiWrite
+1080b5a0   fpgaVerGet
+10812f00   fputc
+10810ba0   fputs
+10811ce0   free
+108143e0   fseek
+1081b528   gCIC_EXC_EN_MASK
+1081b730   gCIC_EXC_out_num
+1081b70c   gDSP_Core_Speed_Hz
+1081b710   gDSP_board_type
+1080ca34   get_packet_type_string
+1080c764   get_path_string
+1081b680   gpBootCfgRegs
+1081b67c   gpCGEM_regs
+1081b694   gpCIC0_regs
+1081b698   gpCIC1_regs
+1081b69c   gpCIC_regs
+1081b708   gpDDR_regs
+1081b6a0   gpEDMA_CC0_regs
+1081b6a4   gpEDMA_CC1_regs
+1081b6a8   gpEDMA_CC2_regs
+1081b608   gpEDMA_CC_regs
+1081b6ac   gpEDMA_TC_0_0_regs
+1081b6b0   gpEDMA_TC_0_1_regs
+1081b6b4   gpEDMA_TC_1_0_regs
+1081b6b8   gpEDMA_TC_1_1_regs
+1081b6bc   gpEDMA_TC_1_2_regs
+1081b6c0   gpEDMA_TC_1_3_regs
+1081b6c4   gpEDMA_TC_2_0_regs
+1081b6c8   gpEDMA_TC_2_1_regs
+1081b6cc   gpEDMA_TC_2_2_regs
+1081b6d0   gpEDMA_TC_2_3_regs
+1081b420   gpEDMA_TC_regs
+1081b690   gpGPIO_regs
+1081b6f8   gpMPU0_regs
+1081b6fc   gpMPU1_regs
+1081b700   gpMPU2_regs
+1081b704   gpMPU3_regs
+1081b548   gpMPU_regs
+1081b68c   gpMSMC_regs
+1081b780   gpNetCP_DMA_CfgRegs
+1081b788   gpNetCP_DMA_RxChCfgRegs
+1081b790   gpNetCP_DMA_RxFlowCfgRegs
+1081b784   gpNetCP_DMA_TxChCfgRegs
+1081b78c   gpNetCP_DMA_TxChPriority
+1081b684   gpPLLC_regs
+1081b688   gpPSC_regs
+1081b758   gpQM_DMA_CfgRegs
+1081b760   gpQM_DMA_RxChCfgRegs
+1081b768   gpQM_DMA_RxFlowCfgRegs
+1081b75c   gpQM_DMA_TxChCfgRegs
+1081b764   gpQM_DMA_TxChPriority
+1081b754   gpQM_INTD_regs
+1081b734   gpQM_configRegs
+1081b738   gpQM_descriptorRegions
+1081b740   gpQueueManageProxyRegs
+1081b748   gpQueueManageProxyVBUSM
+1081b73c   gpQueueManageRegs
+1081b744   gpQueueManageVBUSM
+1081b74c   gpQueueStatusConfigRegs
+1081b750   gpQueueThresholdStatus
+1081b76c   gpSRIO_DMA_CfgRegs
+1081b774   gpSRIO_DMA_RxChCfgRegs
+1081b77c   gpSRIO_DMA_RxFlowCfgRegs
+1081b770   gpSRIO_DMA_TxChCfgRegs
+1081b778   gpSRIO_DMA_TxChPriority
+1081b7a8   gpSRIO_regs
+1081b6d4   gpTimer0Regs
+1081b6d8   gpTimer1Regs
+1081b6dc   gpTimer2Regs
+1081b6e0   gpTimer3Regs
+1081b6e4   gpTimer4Regs
+1081b6e8   gpTimer5Regs
+1081b6ec   gpTimer6Regs
+1081b6f0   gpTimer7Regs
+1081b6f4   gpTimer8Regs
+1081b470   gpTimerRegs
+1081b678   gpXMC_regs
+1081b3e0   gstruMpuAddrRange
+1081b72c   guwIntcCICExcEvtIdx
+1081b498   input_clk_str
+1081b4c0   internal_exception_str
+10819dcc   interrupt_cfg
+1081b448   interrupt_map
+10810760   lock_mem_prot_regs
+1081b798   loopback_mode
+10815b00   lseek
+10814d60   ltoa
+1080cf34   main
+10813da0   malloc
+10819de0   mem_prot_key
+10816220   memccpy
+10816280   memcmp
+10815ba0   memcpy
+10806430   memory_protection_exception_handler
+10814e40   memset
+10819c64   msg_cfg
+1081b794   numLinkingEntry
+1081b7a4   num_GPIO
+1081b568   path_str
+1081b650   pbuf
+10814f20   printf
+10816580   puts
+10815fa0   readmsg
+10816020   remove
+1080b7e8   rs422Init
+1080b850   rs422Read
+1080ba54   rs422Trans
+1080ba8c   rs422Write
+10819c00   rxMode
+10819ab0   s_fifo8
+10819c38   serdesLinkSetup
+10819c14   serdes_cfg
+10813520   setvbuf
+108187f0   softWareInfo
+1081b7ac   srioSerdesRegs
+10819c84   srio_cfg
+1080cbd8   srio_doorbell_latency_test
+1080cdb8   srio_drv_init
+1080c85c   srio_identify_used_ports_lanes
+108165c0   strlen
+108162e0   strncmp
+1081b108   test
+1080cc44   test_srioDio
+1081b5a0   type_str
+1080d524   uartCfg
+1080da20   uartInit
+1080da54   uartRead
+1080da30   uartWrite
+1080daec   uartprintf
+1081b7a0   uiDoorbell_TSC
+1081b718   uiLL2_scrub_addr
+1081b79c   uiTestID
+10819ce0   uiaDescriptorAccumulationList
+10816020   unlink
+10810828   unlock_mem_prot_regs
+00800000   vectors
+10816340   vsprintf
+10815d80   write
+108163a0   writemsg
+
+
+GLOBAL SYMBOLS: SORTED BY Symbol Address 
+
+address    name
+--------   ----
+00000001   __TI_args_main
+00000800   __TI_SYSMEM_SIZE
+00001000   __TI_STACK_SIZE
+00800000   vectors
+0c01a800   _sys_memory
+108039a4   KeyStone_main_PLL_init
+10803e2c   KeyStone_PLL_init
+10803fd8   KeyStone_PASS_PLL_init
+10804068   KeyStone_DDR_PLL_init
+108040f4   calc_cycle_measure_overhead
+1080414c   TSC_init
+10804160   TSC_delay_ms
+108041f8   TSC_delay_us
+10804298   Reset_Timer
+108042e8   Timer64_Init
+108046a8   Service_Watchdog
+108046ec   KeyStone_enable_PSC_module
+1080482c   KeyStone_disable_PSC_module
+108048d8   KeyStone_disable_PSC_Power_Domain
+10804978   EDMA_channel_TC_cfg
+10804a00   EDMA_TC_priority_cfg
+10804a68   EDMA_init
+10804fc0   EDMA_event_enable
+1080502c   EDMA_event_disable
+1080509c   EDMA_interrupt_enable
+10805108   EDMA_interrupt_disable
+10805178   EDMA_wait
+10805240   EDMA_copy
+10805458   EDMA_fill
+108057f4   IDMA_wait
+10805820   IDMA_copy
+108058b8   EDMA_CC_error_handler
+10805ac4   EDMA_TC_error_handler
+10805bf0   EDMA_error_handler
+10805cf8   L1_MPPA_setup
+10805da0   L1P_memory_protection_cfg
+10805e30   L1D_memory_protection_cfg
+10805ec4   L1_cache_protection
+10805ed4   LL2_MPPA_setup
+10805f70   LL2_Memory_Protection_cfg
+10806104   KeyStone_CorePac_AID_map
+1080618c   KeyStone_PrivID_Remap
+10806208   KeyStone_SMS_MPAX_setup
+108062e8   KeyStone_SES_MPAX_setup
+108063c8   KeyStone_MSMC_MP_interrupt_en
+10806430   memory_protection_exception_handler
+10806548   KeyStone_MSMC_protection_exception_handler
+10806640   TN_MPU5_constant
+1080668c   KeyStone_MPU_range_setup
+1080670c   KeyStone_MPU_setup
+10806910   KeyStone_MPU_MPPA_modify
+10806a08   KeyStone_MPU_interrupt_enable
+10806ab0   KeyStone_MPU_interrupts_enable
+10806b94   KeyStone_peripherals_MPU_fault_status
+10806c90   KeyStone_peripherals_MPU_excepiton_handler
+10806d74   KeyStone_SL2_EDC_enable
+10806e34   KeyStone_SL2_EDC_interrupt_en
+10806e8c   LL2_EDC_setup
+10806f50   LL2_EDC_scrub
+10807034   L1P_EDC_setup
+108070b8   LL2_EDC_handler
+108072f0   L1P_ED_handler
+10807414   KeyStone_SL2_EDC_handler
+108076ec   KeyStone_CIC_exception_events_mapping
+10807b24   KeyStone_Exception_cfg
+10807d08   Bus_error_handler
+10807de4   KeyStone_CIC_EXC_handler
+10808228   KeyStone_EXC_external
+108086f0   EXC_internal
+108087b0   EXC_NMI
+108087c8   EXC_swgen
+108087e0   CPU_interrupt_init
+10808888   CPU_interrupt_enable
+108088c8   KeyStone_get_device_speed_grade
+108089b0   KeyStone_get_device_info
+10808b84   KeyStone_common_device_init
+10808bc0   KeyStone_common_CPU_init
+10808e30   KeyStone_SRIO_GlobalEnable
+10808e78   KeyStone_SRIO_enable_blocks
+10809004   KeyStone_SRIO_disable_all_blocks
+108090a0   KeyStone_SRIO_soft_reset
+108091e8   KeyStone_SRIO_set_1x2x4x_Path
+10809234   KeyStone_SRIO_Timeout_Config
+10809490   KeyStone_SRIO_CSR_CAR_Config
+108097d4   KeyStone_SRIO_Error_Capture_Enable
+10809a20   KeyStone_SRIO_set_device_ID
+10809b54   KeyStone_map_SRIO_RX_message
+10809ea4   KeyStone_SRIO_Datastreaming_init
+10809f30   KeyStone_SRIO_TX_Queue_Cfg
+1080a064   KeyStone_SRIO_Garbage_Queue_Cfg
+1080a0d4   KeyStone_SRIO_packet_forwarding_Cfg
+1080a1cc   KeyStone_SRIO_MulticastID_Cfg
+1080a254   KeyStone_SRIO_RxMode_Setup
+1080a310   KeyStone_SRIO_little_endian_swap
+1080a338   KeyStone_SRIO_Interrupt_init
+1080a5c4   KeyStone_SRIO_Prioirity_Permission_Setup
+1080a628   KeyStone_SRIO_Flow_Control
+1080a754   KeyStone_SRIO_Init
+1080abc4   KeyStone_SRIO_LSU_transfer
+1080ae6c   KeyStone_SRIO_wait_LSU_completion
+1080aef0   KeyStone_SRIO_get_LSU_completion_context_code
+1080af50   KeyStone_SRIO_DirectIO
+1080aff8   KeyStone_SRIO_Maintenance
+1080b0ec   KeyStone_SRIO_DoorBell
+1080b184   KeyStone_SRIO_match_ACK_ID
+1080b368   KeyStone_SRIO_Build_Type11_Msg_Desc
+1080b4b4   KeyStone_SRIO_Build_Type9_Msg_Desc
+1080b5a0   fpgaVerGet
+1080b64c   GetFifoNum
+1080b7e8   rs422Init
+1080b850   rs422Read
+1080ba54   rs422Trans
+1080ba8c   rs422Write
+1080bbf4   fpgaSpiInit
+1080bc44   fpgaSpiRead
+1080bd08   fpgaSpiWrite
+1080be34   Rs422Recv
+1080bf30   SpiRecv
+1080c030   Spi_Rs422Isr
+1080c1e4   Keystone_SRIO_DirectIO
+1080c294   big2little
+1080c764   get_path_string
+1080c85c   srio_identify_used_ports_lanes
+1080ca34   get_packet_type_string
+1080caf4   InitDataBuffer
+1080cb34   VerifyData
+1080cbd8   srio_doorbell_latency_test
+1080cc44   test_srioDio
+1080cdb8   srio_drv_init
+1080cee4   checksum
+1080cf34   main
+1080d2e0   fifoOpen
+1080d330   fifoWrite
+1080d410   fifoRead
+1080d4f4   fifoCheck
+1080d524   uartCfg
+1080d6e0   dspUartInit
+1080d904   dspUartSend
+1080d984   dspUartRece
+1080da20   uartInit
+1080da30   uartWrite
+1080da54   uartRead
+1080daec   uartprintf
+1080db68   KeyStone_UART_Interrupts_Init
+1080dbe4   DebugSerialDatIdle
+1080dda8   KeyStone_Serdes_PLL_config
+1080dfa4   KeyStone_SRIO_Serdes_init
+1080e240   KeyStone_HyperLink_Serdes_init
+1080e4e0   Keystone_SGMII_Serdes_init
+1080e6f8   KeyStone_Serdes_disable
+1080e780   Exception_service_routine
+1080eb30   Nested_Exception_service_routine
+1080ed80   __c6xabi_divd
+1080f900   SRIO_Doorbell_ISR
+1080fbc8   SRIO_Message_ISR
+1080fea0   _printfi
+10810760   lock_mem_prot_regs
+10810828   unlock_mem_prot_regs
+108108f0   KeyStone_MPAX_seg_setup
+10810a94   KeyStone_XMC_MPAX_setup
+10810ba0   fputs
+108117e0   __c6xabi_divf
+10811ce0   free
+10811f60   dspUartIsr
+1081238c   SRIO_Interrupts_Init
+10812400   __c6xabi_divull
+10812ac0   GPIO_Interrupts_Init
+10812b38   GPIO_init
+10812b80   check_GPIO
+10812c30   GPIO_loopback_test
+10812f00   fputc
+10813320   GPIO_ISR
+10813520   setvbuf
+108138e0   HOSTrename
+10813a80   __c6xabi_divul
+10813da0   malloc
+108141a0   _closefile
+108143e0   fseek
+10814500   HOSTlseek
+10814600   _auto_init_elf
+10814700   _wrt_ok
+10814800   copy_in
+10814900   HOSTopen
+10814ac0   atoi
+10814ba0   close
+10814c80   __TI_zero_init
+10814d60   ltoa
+10814e40   memset
+10814f20   printf
+10815000   HOSTread
+108150c0   HOSTunlink
+10815180   HOSTwrite
+10815240   __c6xabi_divu
+10815240   __divu
+10815300   __c6xabi_remi
+10815300   __remi
+108153c0   _doflush
+10815480   exit
+10815540   __TI_tls_init
+10815600   HOSTclose
+108156a0   __c6xabi_remu
+108156a0   __remu
+10815740   _cleanup
+10815920   _minit
+10815b00   lseek
+10815ba0   memcpy
+10815d80   write
+10815e20   __c6xabi_fixfu
+10815ea0   __c6xabi_llshl
+10815f20   _c_int00
+10815fa0   readmsg
+10816020   remove
+10816020   unlink
+108160a0   __TI_cpp_init
+10816100   __c6xabi_frcmpyd_div
+10816160   __c6xabi_llshru
+108161c0   _subcull
+10816220   memccpy
+10816280   memcmp
+108162e0   strncmp
+10816340   vsprintf
+108163a0   writemsg
+108163f8   C$$IO$$
+10816440   __c6xabi_isinf
+108164c0   __c6xabi_strasgi_64plus
+108164c0   __strasgi_64plus
+10816500   _args_main
+10816580   puts
+108165c0   strlen
+10816600   __c6xabi_negll
+10816620   _nop
+108166a0   C$$EXIT
+108166a0   abort
+108166c0   __TI_decompress_none
+108166e0   __TI_decompress_rle24
+10818588   _ctypes_
+108187f0   softWareInfo
+10818810   RS422_RECV_FIFO
+108191d0   SPI_RECV_FIFO
+10819ab0   s_fifo8
+10819ac0   _tmpnams
+10819c00   rxMode
+10819c14   serdes_cfg
+10819c38   serdesLinkSetup
+10819c64   msg_cfg
+10819c84   srio_cfg
+10819ce0   uiaDescriptorAccumulationList
+10819d60   exception_record
+10819dcc   interrupt_cfg
+10819de0   mem_prot_key
+10819df8   _stack
+1081adf8   __TI_STACK_END
+1081adf8   _ftable
+1081afd8   cmp
+1081b104   _ft_end
+1081b108   test
+1081b350   LSU_state_index_table
+1081b3e0   gstruMpuAddrRange
+1081b420   gpEDMA_TC_regs
+1081b448   interrupt_map
+1081b470   gpTimerRegs
+1081b498   input_clk_str
+1081b4c0   internal_exception_str
+1081b4e8   boot_mode_str
+1081b508   bus_err_stat_str
+1081b528   gCIC_EXC_EN_MASK
+1081b548   gpMPU_regs
+1081b568   path_str
+1081b588   Peri_MPU_err_type_str
+1081b5a0   type_str
+1081b5b8   device_type_str
+1081b5d0   doorbell_msg_str
+1081b5f8   dsp0_device_ID_routing_config
+1081b608   gpEDMA_CC_regs
+1081b614   _cleanup_ptr
+1081b618   _dtors_ptr
+1081b61c   __TI_enable_exit_profile_output
+1081b630   err1
+1081b640   err
+1081b650   pbuf
+1081b660   Ns_str
+1081b668   endian_str
+1081b670   _lock
+1081b674   _unlock
+1081b678   __TI_STATIC_BASE
+1081b678   gpXMC_regs
+1081b67c   gpCGEM_regs
+1081b680   gpBootCfgRegs
+1081b684   gpPLLC_regs
+1081b688   gpPSC_regs
+1081b68c   gpMSMC_regs
+1081b690   gpGPIO_regs
+1081b694   gpCIC0_regs
+1081b698   gpCIC1_regs
+1081b69c   gpCIC_regs
+1081b6a0   gpEDMA_CC0_regs
+1081b6a4   gpEDMA_CC1_regs
+1081b6a8   gpEDMA_CC2_regs
+1081b6ac   gpEDMA_TC_0_0_regs
+1081b6b0   gpEDMA_TC_0_1_regs
+1081b6b4   gpEDMA_TC_1_0_regs
+1081b6b8   gpEDMA_TC_1_1_regs
+1081b6bc   gpEDMA_TC_1_2_regs
+1081b6c0   gpEDMA_TC_1_3_regs
+1081b6c4   gpEDMA_TC_2_0_regs
+1081b6c8   gpEDMA_TC_2_1_regs
+1081b6cc   gpEDMA_TC_2_2_regs
+1081b6d0   gpEDMA_TC_2_3_regs
+1081b6d4   gpTimer0Regs
+1081b6d8   gpTimer1Regs
+1081b6dc   gpTimer2Regs
+1081b6e0   gpTimer3Regs
+1081b6e4   gpTimer4Regs
+1081b6e8   gpTimer5Regs
+1081b6ec   gpTimer6Regs
+1081b6f0   gpTimer7Regs
+1081b6f4   gpTimer8Regs
+1081b6f8   gpMPU0_regs
+1081b6fc   gpMPU1_regs
+1081b700   gpMPU2_regs
+1081b704   gpMPU3_regs
+1081b708   gpDDR_regs
+1081b70c   gDSP_Core_Speed_Hz
+1081b710   gDSP_board_type
+1081b714   cycle_measure_overhead
+1081b718   uiLL2_scrub_addr
+1081b71c   LL2_EDC_victim_err_str
+1081b720   LL2_EDC_DMA_err_str
+1081b724   LL2_EDC_L1D_err_str
+1081b728   LL2_EDC_L1P_err_str
+1081b72c   guwIntcCICExcEvtIdx
+1081b730   gCIC_EXC_out_num
+1081b734   gpQM_configRegs
+1081b738   gpQM_descriptorRegions
+1081b73c   gpQueueManageRegs
+1081b740   gpQueueManageProxyRegs
+1081b744   gpQueueManageVBUSM
+1081b748   gpQueueManageProxyVBUSM
+1081b74c   gpQueueStatusConfigRegs
+1081b750   gpQueueThresholdStatus
+1081b754   gpQM_INTD_regs
+1081b758   gpQM_DMA_CfgRegs
+1081b75c   gpQM_DMA_TxChCfgRegs
+1081b760   gpQM_DMA_RxChCfgRegs
+1081b764   gpQM_DMA_TxChPriority
+1081b768   gpQM_DMA_RxFlowCfgRegs
+1081b76c   gpSRIO_DMA_CfgRegs
+1081b770   gpSRIO_DMA_TxChCfgRegs
+1081b774   gpSRIO_DMA_RxChCfgRegs
+1081b778   gpSRIO_DMA_TxChPriority
+1081b77c   gpSRIO_DMA_RxFlowCfgRegs
+1081b780   gpNetCP_DMA_CfgRegs
+1081b784   gpNetCP_DMA_TxChCfgRegs
+1081b788   gpNetCP_DMA_RxChCfgRegs
+1081b78c   gpNetCP_DMA_TxChPriority
+1081b790   gpNetCP_DMA_RxFlowCfgRegs
+1081b794   numLinkingEntry
+1081b798   loopback_mode
+1081b79c   uiTestID
+1081b7a0   uiDoorbell_TSC
+1081b7a4   num_GPIO
+1081b7a8   gpSRIO_regs
+1081b7ac   srioSerdesRegs
+1081b7b0   __CIOBUF_
+1081bd0c   __TI_Handler_Table_Base
+1081bd18   __TI_Handler_Table_Limit
+1081bd28   __TI_CINIT_Base
+1081bd50   __TI_CINIT_Limit
+ffffffff   __TI_pprof_out_hndl
+ffffffff   __TI_prof_data_size
+ffffffff   __TI_prof_data_start
+ffffffff   __binit__
+ffffffff   __c_args__
+ffffffff   binit
+UNDEFED    __TI_INITARRAY_Base
+UNDEFED    __TI_INITARRAY_Limit
+UNDEFED    __TI_TLS_INIT_Base
+UNDEFED    __TI_TLS_INIT_Limit
+
+[378 symbols]

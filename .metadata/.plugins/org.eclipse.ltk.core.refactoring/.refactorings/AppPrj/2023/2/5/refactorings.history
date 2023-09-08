@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;AppPrj/src/SRIO_Test.h&apos; to &apos;srio_drv.h&apos;" description="Rename resource &apos;SRIO_Test.h&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/SRIO_Test.h" name="srio_drv.h" stamp="1675394772121" updateReferences="true"/>
+</session>
